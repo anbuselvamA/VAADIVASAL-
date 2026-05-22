@@ -3,7 +3,8 @@ import {
   Phone, Calendar, Clock, Shield, MapPin, Users,
   Check, X, Play, Menu, MessageSquare, Sparkles, Award, Eye, Flame,
   Car, Droplets, Camera, Target, Heart, Grid, Shirt, ChevronRight, Coffee,
-  Headphones, Star, ShieldCheck, Footprints, Trophy, Diamond, IndianRupee, Plus, Wind, CheckCircle2
+  Headphones, Star, ShieldCheck, Footprints, Trophy, Diamond, IndianRupee, Plus, Wind, CheckCircle2,
+  Mail, Send, Instagram, Facebook, Youtube
 } from 'lucide-react';
 
 /* ─────────── Colours from the mockup ─────────── */
@@ -926,6 +927,263 @@ function PricingView({ setActiveTab }) {
 }
 
 
+function ContactView({ setActiveTab }) {
+  const [mobileSection, setMobileSection] = useState(null); // 'form' | 'map' | null
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const faqs = [
+    { q: 'How can I book a turf?' },
+    { q: 'Is advance payment required?' },
+    { q: 'What is your cancellation policy?' },
+    { q: 'What are your operating hours?' },
+    { q: 'Do you provide sports equipment?' },
+    { q: 'Do you offer membership plans?' },
+  ];
+
+  const ContactForm = () => (
+    <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-3">
+      <div className="grid grid-cols-2 gap-3">
+        <input value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="Your Name*" className="px-4 py-3 rounded-lg text-[13px] font-medium text-white placeholder:text-slate-500 outline-none border transition-colors" style={{ background: BG, borderColor: BORD }} />
+        <input value={form.email} onChange={e => setForm({...form, email: e.target.value})} placeholder="Your Email*" type="email" className="px-4 py-3 rounded-lg text-[13px] font-medium text-white placeholder:text-slate-500 outline-none border transition-colors" style={{ background: BG, borderColor: BORD }} />
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <input value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} placeholder="Phone Number*" className="px-4 py-3 rounded-lg text-[13px] font-medium text-white placeholder:text-slate-500 outline-none border transition-colors" style={{ background: BG, borderColor: BORD }} />
+        <input value={form.subject} onChange={e => setForm({...form, subject: e.target.value})} placeholder="Subject" className="px-4 py-3 rounded-lg text-[13px] font-medium text-white placeholder:text-slate-500 outline-none border transition-colors" style={{ background: BG, borderColor: BORD }} />
+      </div>
+      <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} placeholder="Your Message*" rows={5} className="px-4 py-3 rounded-lg text-[13px] font-medium text-white placeholder:text-slate-500 outline-none border transition-colors resize-none" style={{ background: BG, borderColor: BORD }} />
+      <button type="submit" className="w-full py-3.5 rounded-lg text-[13px] font-black flex items-center justify-center gap-2 transition-all hover:opacity-90 cursor-pointer mt-1" style={{ background: GREEN, color: '#000' }}>
+        SEND MESSAGE <Send className="w-4 h-4" />
+      </button>
+    </form>
+  );
+
+  const MapSection = () => (
+    <div className="relative rounded-xl overflow-hidden border" style={{ borderColor: BORD, minHeight: 340 }}>
+      <iframe
+        title="Turf Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.11497427558!2d80.07879951249993!3d13.047542028082551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1716000000000!5m2!1sen!2sin"
+        width="100%"
+        height="340"
+        style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+        allowFullScreen
+        loading="lazy"
+      />
+      {/* Floating address card */}
+      <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl border" style={{ background: 'rgba(6,10,6,0.95)', backdropFilter: 'blur(12px)', borderColor: BORD }}>
+        <p className="font-black text-[13px] text-white mb-1" style={{ color: GREEN }}>TURF</p>
+        <p className="text-[11px] text-slate-300 font-medium">No.123, Green Field Avenue,<br />Kovilambakkam, Chennai,<br />Tamil Nadu - 600129</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="space-y-0 animate-fade-in -mx-5 lg:-mx-8">
+      {/* ════════════════════════════════════════
+          CONTACT HERO
+      ════════════════════════════════════════ */}
+      <section
+        className="relative overflow-hidden flex flex-col border-b"
+        style={{ minHeight: 280, backgroundImage: "url('/turf_night_view.png')", backgroundSize: 'cover', backgroundPosition: 'center 35%', borderColor: BORD }}
+      >
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.25) 100%)' }} />
+        <div className="relative z-10 flex-grow px-6 sm:px-10 md:px-14 py-10 sm:py-14 flex flex-col justify-center gap-2">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-8 h-[2px] rounded-full" style={{ background: GREEN }}></span>
+            <span className="text-[10px] font-black tracking-widest uppercase" style={{ color: GREEN }}>CONTACT US</span>
+          </div>
+          <h1 className="font-black tracking-tight leading-none text-white uppercase text-3xl sm:text-4xl md:text-5xl">
+            WE'D LOVE TO HEAR<br />
+            <span style={{ color: GREEN }}>FROM YOU!</span>
+          </h1>
+          <p className="text-[13px] sm:text-[14px] text-slate-300 leading-relaxed font-medium max-w-md mt-3">
+            Have questions or want to book a turf?<br />
+            Get in touch with us and we'll get back to you as soon as possible.
+          </p>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          MAIN CONTACT CONTENT
+      ════════════════════════════════════════ */}
+      <div className="px-5 lg:px-8 py-10" style={{ background: BG }}>
+
+        {/* Desktop: 3-column grid */}
+        <div className="hidden md:grid grid-cols-12 gap-8">
+
+          {/* Col 1 — GET IN TOUCH */}
+          <div className="col-span-3 flex flex-col gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <h2 className="font-black text-[12px] text-white uppercase tracking-widest">GET IN TOUCH</h2>
+                <span className="h-[1px] flex-grow" style={{ background: BORD }}></span>
+              </div>
+              <div className="flex flex-col gap-5">
+                {[
+                  { icon: MapPin, label: 'LOCATION', lines: ['No. 123, Green Field Avenue,', 'Kovilambakkam, Chennai,', 'Tamil Nadu – 600129'] },
+                  { icon: Phone,  label: 'PHONE',    lines: ['+91 98765 43210', '+91 91234 56789'] },
+                  { icon: Mail,   label: 'EMAIL',    lines: ['info@turfplay.com', 'bookings@turfplay.com'] },
+                  { icon: Clock,  label: 'HOURS',    lines: ['Monday – Sunday', '6:00 AM – 11:00 PM'] },
+                ].map(({ icon: Icon, label, lines }) => (
+                  <div key={label} className="flex gap-3 items-start">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: `${GREEN}15`, border: `1px solid ${GREEN}30` }}>
+                      <Icon className="w-4 h-4" style={{ color: GREEN }} />
+                    </div>
+                    <div>
+                      <p className="font-black text-[10px] text-white uppercase tracking-widest mb-1">{label}</p>
+                      {lines.map((l, i) => <p key={i} className="text-[12px] text-slate-400 font-medium leading-snug">{l}</p>)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Follow Us */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <h2 className="font-black text-[12px] text-white uppercase tracking-widest">FOLLOW US</h2>
+                <span className="h-[1px] flex-grow" style={{ background: BORD }}></span>
+              </div>
+              <div className="flex gap-3">
+                {[Instagram, Facebook, MessageSquare, Youtube].map((Icon, i) => (
+                  <button key={i} className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 border" style={{ background: `${GREEN}12`, borderColor: `${GREEN}30` }}>
+                    <Icon className="w-4 h-4" style={{ color: GREEN }} />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Col 2 — SEND US A MESSAGE */}
+          <div className="col-span-5 flex flex-col gap-4">
+            <div className="flex items-center gap-2 mb-0">
+              <h2 className="font-black text-[12px] text-white uppercase tracking-widest">SEND US A MESSAGE</h2>
+              <span className="h-[1px] flex-grow" style={{ background: BORD }}></span>
+            </div>
+            <ContactForm />
+          </div>
+
+          {/* Col 3 — FIND US HERE */}
+          <div className="col-span-4 flex flex-col gap-4">
+            <div className="flex items-center gap-2 mb-0">
+              <h2 className="font-black text-[12px] text-white uppercase tracking-widest">FIND US HERE</h2>
+              <span className="h-[1px] flex-grow" style={{ background: BORD }}></span>
+            </div>
+            <MapSection />
+          </div>
+        </div>
+
+        {/* Mobile: Contact Info + Action Buttons */}
+        <div className="md:hidden flex flex-col gap-6">
+          {/* Contact Info */}
+          <div className="flex flex-col gap-4">
+            {[
+              { icon: MapPin, label: 'LOCATION', lines: ['No. 123, Green Field Avenue,', 'Kovilambakkam, Chennai,', 'Tamil Nadu – 600129'] },
+              { icon: Phone,  label: 'PHONE',    lines: ['+91 98765 43210', '+91 91234 56789'] },
+              { icon: Mail,   label: 'EMAIL',    lines: ['info@turfplay.com', 'bookings@turfplay.com'] },
+              { icon: Clock,  label: 'HOURS',    lines: ['Monday – Sunday', '6:00 AM – 11:00 PM'] },
+            ].map(({ icon: Icon, label, lines }) => (
+              <div key={label} className="flex gap-3 items-start p-4 rounded-xl border" style={{ background: CARD, borderColor: BORD }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${GREEN}15`, border: `1px solid ${GREEN}30` }}>
+                  <Icon className="w-4 h-4" style={{ color: GREEN }} />
+                </div>
+                <div>
+                  <p className="font-black text-[10px] text-white uppercase tracking-widest mb-1">{label}</p>
+                  {lines.map((l, i) => <p key={i} className="text-[12px] text-slate-400 font-medium leading-snug">{l}</p>)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Follow Us */}
+          <div>
+            <p className="font-black text-[11px] text-white uppercase tracking-widest mb-3">FOLLOW US</p>
+            <div className="flex gap-3">
+              {[Instagram, Facebook, MessageSquare, Youtube].map((Icon, i) => (
+                <button key={i} className="w-10 h-10 rounded-lg flex items-center justify-center border" style={{ background: `${GREEN}12`, borderColor: `${GREEN}30` }}>
+                  <Icon className="w-5 h-5" style={{ color: GREEN }} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Action Buttons */}
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => setMobileSection(mobileSection === 'form' ? null : 'form')}
+              className="w-full py-3.5 rounded-lg text-[13px] font-black flex items-center justify-center gap-2 cursor-pointer"
+              style={{ background: GREEN, color: '#000' }}
+            >
+              SEND US A MESSAGE <Send className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setMobileSection(mobileSection === 'map' ? null : 'map')}
+              className="w-full py-3.5 rounded-lg text-[13px] font-black flex items-center justify-center gap-2 cursor-pointer border-2"
+              style={{ borderColor: GREEN, color: GREEN, background: 'transparent' }}
+            >
+              VIEW ON MAP <MapPin className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Expanded mobile sections */}
+          {mobileSection === 'form' && <div className="animate-fade-in"><ContactForm /></div>}
+          {mobileSection === 'map' && <div className="animate-fade-in"><MapSection /></div>}
+        </div>
+      </div>
+
+      {/* ════════════════════════════════════════
+          FAQ SECTION
+      ════════════════════════════════════════ */}
+      <section className="px-5 lg:px-8 py-10 border-t" style={{ background: BG, borderColor: BORD }}>
+        <div className="flex items-center justify-center gap-4 mb-8 max-w-3xl mx-auto">
+          <div className="h-[1px] flex-grow" style={{ background: `linear-gradient(to right, transparent, ${BORD})` }}></div>
+          <h2 className="font-black text-[15px] sm:text-[16px] text-white uppercase tracking-widest text-center whitespace-nowrap">
+            FREQUENTLY ASKED QUESTIONS
+          </h2>
+          <div className="h-[1px] flex-grow" style={{ background: `linear-gradient(to left, transparent, ${BORD})` }}></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto">
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              onClick={() => setOpenFaq(openFaq === i ? null : i)}
+              className="flex items-center justify-between p-5 rounded-xl border cursor-pointer transition-all"
+              style={{ background: CARD, borderColor: openFaq === i ? `${GREEN}50` : BORD }}
+            >
+              <span className="text-[13px] font-bold text-slate-300">{faq.q}</span>
+              <Plus className="w-4 h-4 flex-shrink-0 ml-3" style={{ color: openFaq === i ? GREEN : '#475569' }} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          HELP CTA BANNER
+      ════════════════════════════════════════ */}
+      <section className="flex flex-col sm:flex-row items-center justify-between gap-5 px-6 sm:px-10 md:px-14 py-7 border-t" style={{ background: CARD2, borderColor: BORD }}>
+        <div className="flex items-center gap-4">
+          <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${GREEN}15`, border: `1px solid ${GREEN}30` }}>
+            <Headphones className="w-5 h-5" style={{ color: GREEN }} />
+          </div>
+          <div>
+            <p className="font-black text-[14px] text-white">Need Help Booking?</p>
+            <p className="text-[11px] text-slate-400 font-medium">Call us now or message us on WhatsApp. We're here to assist you!</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <a href="tel:+919876543210" className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-[12px] font-black transition-all hover:opacity-90 cursor-pointer" style={{ background: GREEN, color: '#000' }}>
+            <Phone className="w-4 h-4" /> +91 98765 43210
+          </a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-[12px] font-black transition-all hover:opacity-90 cursor-pointer border-2" style={{ borderColor: GREEN, color: GREEN, background: 'transparent' }}>
+            <MessageSquare className="w-4 h-4" /> CHAT ON WHATSAPP
+          </a>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('About Us');
   const [selectedSlot, setSelectedSlot] = useState(null);
@@ -1052,7 +1310,7 @@ export default function App() {
         )}
       </header>
 
-      <main className={activeTab === 'Facilities' || activeTab === 'Gallery' || activeTab === 'Pricing' ? 'max-w-7xl w-full mx-auto py-7 space-y-0 overflow-hidden' : 'max-w-7xl w-full mx-auto px-5 lg:px-8 py-7 space-y-8'}>
+      <main className={['Facilities','Gallery','Pricing','Contact'].includes(activeTab) ? 'max-w-7xl w-full mx-auto py-7 space-y-0 overflow-hidden' : 'max-w-7xl w-full mx-auto px-5 lg:px-8 py-7 space-y-8'}>
         {activeTab === 'About Us' ? (
           <AboutUsView setActiveTab={setActiveTab} />
         ) : activeTab === 'Facilities' ? (
@@ -1061,6 +1319,8 @@ export default function App() {
           <GalleryView setActiveTab={setActiveTab} />
         ) : activeTab === 'Pricing' ? (
           <PricingView setActiveTab={setActiveTab} />
+        ) : activeTab === 'Contact' ? (
+          <ContactView setActiveTab={setActiveTab} />
         ) : (
           <>
             {/* ════════════════════════════════════════
