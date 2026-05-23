@@ -11,6 +11,10 @@ import { Calendar, Award, Flame, Car, Droplets, Shield, MapPin, Play, Phone, Mai
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Meteors } from "@/components/ui/meteors";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { Marquee } from "@/components/ui/marquee";
+import { ShinyText } from "@/components/ui/shiny-text";
 
 export default function Home() {
   const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
@@ -78,18 +82,11 @@ export default function Home() {
       {/* ── HOME / HERO SECTION ── */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Full Screen Cinematic Background */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/turf_night_view.png"
-            alt="Cinematic Turf Background"
-            fill
-            className="object-cover object-center scale-105 animate-[pulse_10s_ease-in-out_infinite]"
-            priority
-          />
+        <div className="absolute inset-0 z-0 bg-[#060a06]">
           {/* Intense Black Overlays for Cinematic Depth */}
-          <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/20 to-[#060a06]/80" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#060a06_100%)] opacity-80" />
+          <Meteors number={30} />
         </div>
         
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.4)" />
@@ -109,8 +106,8 @@ export default function Home() {
             </div>
 
             {/* Bold Premium Typography */}
-            <h2 className="text-emerald-400 text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
-              Virudhachalam’s Finest
+            <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg text-emerald-400">
+              <ShinyText text="Virudhachalam’s Finest" speed={3} />
             </h2>
             <h1 className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black font-heading uppercase tracking-tighter leading-[0.8] text-white drop-shadow-2xl flex flex-col items-center">
               <span>PREMIUM</span>
@@ -124,12 +121,12 @@ export default function Home() {
 
             {/* Animated CTA Buttons */}
             <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
-              {/* Spinning Border Premium Button */}
-              <a href="/booking" className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none group shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.5)] transition-shadow duration-500">
-                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#060a06_0%,#10b981_50%,#060a06_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#060a06] px-8 sm:px-12 py-3 text-sm sm:text-base font-black uppercase tracking-widest text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-transparent group-hover:text-black">
-                  <Calendar className="w-5 h-5 mr-3" /> Book Instantly
-                </span>
+              <a href="/booking" className="inline-block">
+                <ShimmerButton className="shadow-2xl">
+                  <span className="whitespace-pre-wrap text-center text-sm font-black leading-none tracking-widest text-white uppercase flex items-center gap-2">
+                    <Calendar className="w-5 h-5" /> Book Instantly
+                  </span>
+                </ShimmerButton>
               </a>
 
               {/* Secondary Ghost Button */}
@@ -168,6 +165,23 @@ export default function Home() {
 
           </motion.div>
         </div>
+    </section>
+
+      {/* ── MAGIC UI MARQUEE ── */}
+      <section className="py-6 bg-[#10b981] overflow-hidden">
+        <Marquee className="[--duration:30s]" repeat={6}>
+          {[
+            "⚽ FIFA Certified Grass",
+            "💡 High-Mast Lighting",
+            "🚿 Clean Washrooms",
+            "🚗 Premium Parking",
+            "🏆 Tournaments Allowed"
+          ].map((feature, i) => (
+            <div key={i} className="mx-8 text-black font-black text-xl md:text-2xl tracking-widest uppercase flex items-center">
+              {feature}
+            </div>
+          ))}
+        </Marquee>
       </section>
 
       {/* ── GALLERY SECTION (Swipeable) ── */}
