@@ -14,7 +14,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Meteors } from "@/components/ui/meteors";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Marquee } from "@/components/ui/marquee";
-import { ShinyText } from "@/components/ui/shiny-text";
 
 export default function Home() {
   const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
@@ -82,9 +81,16 @@ export default function Home() {
       {/* ── HOME / HERO SECTION ── */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Full Screen Cinematic Background */}
-        <div className="absolute inset-0 z-0 bg-[#060a06]">
+        <div className="absolute inset-0 z-0 bg-[#060a06] overflow-hidden">
+          <Image
+            src="/turf_night_view.png"
+            alt="Cinematic Turf Background"
+            fill
+            className="object-cover object-center opacity-40 md:opacity-60"
+            priority
+          />
           {/* Intense Black Overlays for Cinematic Depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/20 to-[#060a06]/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/40 to-[#060a06]/90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#060a06_100%)] opacity-80" />
           <Meteors number={30} />
         </div>
@@ -106,8 +112,8 @@ export default function Home() {
             </div>
 
             {/* Bold Premium Typography */}
-            <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg text-emerald-400">
-              <ShinyText text="Virudhachalam’s Finest" speed={3} />
+            <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)] bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-200 animate-pulse">
+              Virudhachalam’s Finest
             </h2>
             <h1 className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black font-heading uppercase tracking-tighter leading-[0.8] text-white drop-shadow-2xl flex flex-col items-center">
               <span>PREMIUM</span>
@@ -168,7 +174,7 @@ export default function Home() {
     </section>
 
       {/* ── MAGIC UI MARQUEE ── */}
-      <section className="py-6 bg-[#10b981] overflow-hidden">
+      <section className="py-4 bg-white/5 border-y border-white/10 overflow-hidden backdrop-blur-md">
         <Marquee className="[--duration:30s]" repeat={6}>
           {[
             "⚽ FIFA Certified Grass",
@@ -177,7 +183,7 @@ export default function Home() {
             "🚗 Premium Parking",
             "🏆 Tournaments Allowed"
           ].map((feature, i) => (
-            <div key={i} className="mx-8 text-black font-black text-xl md:text-2xl tracking-widest uppercase flex items-center">
+            <div key={i} className="mx-8 text-slate-300 font-bold text-sm md:text-lg tracking-widest uppercase flex items-center">
               {feature}
             </div>
           ))}
