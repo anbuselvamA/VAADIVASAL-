@@ -1,14 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Spotlight } from "@/components/ui/spotlight";
 import { Highlight } from "@/components/ui/hero-highlight";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { motion } from "framer-motion";
 import { Calendar, Award, Flame, Car, Droplets, Shield, MapPin, Play, Phone, Mail, Send, CheckCircle2, Star, Users, Wind, Trophy, MessageCircle } from "lucide-react";
 
 export default function Home() {
+  const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
+
   const pricingPlans = [
     {
       name: "BASIC TURF",
@@ -66,143 +69,118 @@ export default function Home() {
         Special Weekend Offer: Flat 10% off on all midnight slots! Use Code: NIGHTOWL
       </div>
 
-      {/* ── STICKY GLASS NAVBAR ── */}
-      <nav className="sticky top-0 left-0 right-0 z-50 px-6 py-4 border-b border-white/5 bg-[#060a06]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <Award className="w-5 h-5 text-[#060a06]" />
+      {/* ── LUXURY STICKY NAVBAR ── */}
+      <div className="sticky top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 pb-2 pointer-events-none">
+        <nav className="pointer-events-auto w-full max-w-7xl px-6 py-3 border border-white/10 bg-[#060a06]/80 backdrop-blur-2xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] flex items-center justify-between transition-all duration-500">
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#10b981] to-emerald-400 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <Award className="w-5 h-5 text-black" />
             </div>
-            <span className="text-xl font-black tracking-tight text-white uppercase">VAADIVAASAL</span>
+            <span className="text-xl font-black tracking-tight text-white uppercase font-heading mt-1">VAADIVAASAL</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-300 uppercase tracking-widest">
-            <a href="#home" className="hover:text-zinc-300 transition-colors">Home</a>
-            <a href="#about" className="hover:text-zinc-300 transition-colors">About Us</a>
-            <a href="#gallery" className="hover:text-zinc-300 transition-colors">Gallery</a>
-            <a href="#pricing" className="hover:text-zinc-300 transition-colors">Pricing</a>
-            <a href="#contact" className="hover:text-zinc-300 transition-colors">Contact</a>
+          
+          <div className="hidden md:flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest bg-white/5 p-1.5 rounded-xl border border-white/5">
+            {[
+              { name: "Home", href: "#home" },
+              { name: "About", href: "/about" },
+              { name: "Facilities", href: "/facilities" },
+              { name: "Contact", href: "/contact" }
+            ].map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                className="px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-300 relative group overflow-hidden"
+              >
+                <span className="relative z-10">{link.name}</span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#10b981] group-hover:w-1/2 transition-all duration-300"></span>
+              </a>
+            ))}
           </div>
-          <a href="/booking" className="bg-white hover:bg-zinc-200 text-[#060a06] font-black uppercase tracking-wide px-6 py-2.5 rounded-lg text-xs transition-all flex items-center gap-2">
+
+          <a href="/booking" className="bg-white hover:bg-zinc-200 text-[#060a06] font-black uppercase tracking-wide px-6 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
             <Calendar className="w-4 h-4" /> Book Slot
           </a>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* ── HOME / HERO SECTION ── */}
-      <section id="home" className="relative min-h-[calc(100vh-40px)] flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12">
         <div className="absolute inset-0">
           <Image
             src="/turf_night_view.png"
             alt="Cinematic Turf Background"
             fill
-            className="object-cover object-center opacity-60"
+            className="object-cover object-center opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#060a06]/50 to-[#060a06]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060a06]/40 via-[#060a06]/60 to-[#060a06]" />
         </div>
         
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(255, 255, 255, 0.15)" />
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.2)" />
         <BackgroundBeams />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center mt-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center w-full"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 bg-white/10 mb-8 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-white "></span>
-              <span className="text-[10px] font-black tracking-widest text-zinc-300 uppercase">Premium Turf Experience</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 mb-8 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+              <span className="text-[10px] font-black tracking-widest text-[#10b981] uppercase">Open 24/7 • Live Booking</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-white drop-shadow-2xl">
-              MORE THAN JUST A TURF.<br />
-              <Highlight className="text-black dark:text-black mt-2 md:mt-4 px-4 py-2 inline-block">
-                WE BUILD CHAMPIONS.
-              </Highlight>
+            <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-black font-heading uppercase tracking-tight leading-[0.9] text-white drop-shadow-2xl max-w-5xl">
+              VIRUDHACHALAM’S<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-emerald-400 to-green-200 mt-2 inline-block">
+                PREMIUM CRICKET
+              </span><br />
+              & FOOTBALL TURF
             </h1>
 
-            <p className="mt-8 text-base md:text-lg text-slate-300 font-medium max-w-2xl leading-relaxed drop-shadow-lg">
-              Experience the perfect playing environment where passion meets performance. 
-              Book your slot at the finest FIFA-quality turf in the city.
+            <p className="mt-6 text-lg md:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed drop-shadow-lg tracking-wide">
+              Book Instantly • Floodlights • Parking • Night Matches
             </p>
 
-            <div className="mt-12 flex flex-col sm:flex-row items-center gap-4">
-              <a href="/booking" className="h-14 px-8 rounded-xl bg-white text-[#060a06] font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-zinc-200 transition-colors">
-                <Calendar className="w-5 h-5" /> Book Your Turf
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+              <a href="/booking" className="h-14 px-8 rounded-xl bg-[#10b981] text-black font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#059669] transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]">
+                <Calendar className="w-5 h-5" /> Book Instantly
               </a>
-              <a href="#about" className="h-14 px-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-white/10 transition-colors">
-                Explore More
+              <a href="/about" className="h-14 px-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-white/10 transition-colors">
+                Explore Our Story
               </a>
             </div>
+            
+            {/* Live Stats Panel */}
+            <div className="w-full max-w-4xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl">
+              <div className="flex flex-col items-center justify-center p-4">
+                <span className="text-3xl md:text-4xl font-black font-heading text-white flex items-center">
+                  <NumberTicker value={50} />K+
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Happy Players</span>
+              </div>
+              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
+                <span className="text-3xl md:text-4xl font-black font-heading text-[#10b981] flex items-center gap-1">
+                  4.9 <Star className="w-5 h-5 fill-[#10b981]" />
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Google Rating</span>
+              </div>
+              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
+                <span className="text-2xl md:text-3xl font-black font-heading text-white">
+                  CITY CENTER
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Prime Location</span>
+              </div>
+              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
+                <span className="text-2xl md:text-3xl font-black font-heading text-white">
+                  24/7
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Opening Timings</span>
+              </div>
+            </div>
+
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── ABOUT US SECTION ── */}
-      <section id="about" className="py-24 relative bg-[#060a06] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">About Us</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-none mb-6">
-                TO INSPIRE. TO PLAY. <span className="text-white">TOGETHER.</span>
-              </h3>
-              <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                We are passionate about football and committed to providing world-class turf experiences for players of all ages and skill levels. Our mission is to create the perfect playing environment where passion meets performance.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="border border-white/10 rounded-2xl p-6 bg-[#0a120a]">
-                  <h4 className="text-3xl font-black text-white mb-1">50K+</h4>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Happy Players</p>
-                </div>
-                <div className="border border-white/10 rounded-2xl p-6 bg-[#0a120a]">
-                  <h4 className="text-3xl font-black text-white mb-1">5+</h4>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Years Experience</p>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="text-sm font-bold text-zinc-300 uppercase tracking-widest mb-4">Why Choose Us</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { icon: <Award className="w-5 h-5 text-zinc-300" />, text: "FIFA Certified Grass" },
-                    { icon: <Flame className="w-5 h-5 text-zinc-300" />, text: "High-Mast Lighting" },
-                    { icon: <Car className="w-5 h-5 text-zinc-300" />, text: "Premium Parking" },
-                    { icon: <Droplets className="w-5 h-5 text-zinc-300" />, text: "Clean Washrooms" }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-xl">
-                      {item.icon}
-                      <span className="text-sm font-bold text-white">{item.text}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group"
-            >
-              <Image src="/about_hero.png" alt="About Us" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform ">
-                  <Play className="w-8 h-8 text-[#060a06] ml-1" />
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 
@@ -212,7 +190,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">The Playing Surface</h3>
+              <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">The Playing Surface</h3>
             </div>
             <div className="flex gap-2 hidden md:flex">
               <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
@@ -240,6 +218,13 @@ export default function Home() {
             ))}
           </div>
         </div>
+        
+        {/* View All Facilities Button */}
+        <div className="mt-12 flex justify-center">
+          <a href="/facilities" className="h-14 px-8 rounded-xl border border-[#10b981]/50 bg-[#10b981]/10 text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#10b981] hover:text-black transition-all shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+            View All Facilities
+          </a>
+        </div>
       </section>
 
       {/* ── PRICING SECTION ── */}
@@ -249,7 +234,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Pricing Plans</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Choose Your Turf</h3>
+            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">Choose Your Turf</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -292,12 +277,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── TOURNAMENT HOSTING SECTION ── */}
+      <section className="py-24 bg-[#0a120a] border-t border-white/5 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-yellow-500/30 bg-yellow-500/10 mb-6">
+                <Trophy className="w-4 h-4 text-yellow-500" />
+                <span className="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Corporate & Local Leagues</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black font-heading text-white uppercase tracking-tight leading-none mb-6">
+                HOST YOUR TOURNAMENT WITH US
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                From corporate sports days to high-stakes local football leagues, Vaadivaasal Turf is the perfect venue. We offer end-to-end support including referees, floodlights, seating, and live scoreboard setups.
+              </p>
+              
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Dedicated Event Manager", 
+                  "Customized Bulk Booking Pricing", 
+                  "Trophy & Medal Arrangements", 
+                  "HD Video Recording (On Request)"
+                ].map((perk, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-sm font-semibold text-slate-300">
+                    <CheckCircle2 className="w-5 h-5 text-[#10b981]" />
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+
+              <a href="#contact" className="h-14 px-8 inline-flex rounded-xl bg-white text-[#060a06] font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-zinc-200 transition-colors">
+                Enquire Now <Award className="w-5 h-5" />
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group"
+            >
+              <Image 
+                src="https://images.unsplash.com/photo-1518605368461-1ee7c5108f91?q=80&w=1200" 
+                alt="Tournament" 
+                fill 
+                className="object-cover transition-transform duration-700 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="flex items-center justify-between">
+                  <span className="text-white font-black text-2xl font-heading tracking-wider">CHAMPIONSHIP ARENA</span>
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <Trophy className="w-6 h-6 text-yellow-500" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── TESTIMONIALS (REVIEWS) ── */}
-      <section className="py-24 bg-[#0a120a] border-t border-white/5">
+      <section className="py-24 bg-[#060a06] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Player Reviews</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Hear From Champions</h3>
+            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">Hear From Champions</h3>
           </div>
           <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
         </div>
@@ -306,109 +359,57 @@ export default function Home() {
       {/* ── FAQ SECTION ── */}
       <section className="py-24 bg-[#060a06] border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Got Questions?</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Frequently Asked</h3>
+            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight mb-8">Frequently Asked</h3>
+            
+            {/* Language Toggle */}
+            <div className="inline-flex bg-[#0a120a] border border-white/10 rounded-xl p-1 mb-6">
+              <button 
+                onClick={() => setFaqLang('en')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'en' ? 'bg-[#10b981] text-black shadow-lg' : 'text-slate-400 hover:text-white'}`}
+              >
+                English
+              </button>
+              <button 
+                onClick={() => setFaqLang('ta')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'ta' ? 'bg-[#10b981] text-black shadow-lg' : 'text-slate-400 hover:text-white'}`}
+              >
+                Tanglish
+              </button>
+            </div>
           </div>
 
           <div className="space-y-4">
             {[
               {
-                q: "Are metal studs allowed on the turf?",
-                a: "No, metal studs are strictly prohibited to maintain the quality of the FIFA-certified grass. Please use standard rubber studs or turf shoes."
+                en: { q: "Are metal studs allowed on the turf?", a: "No, metal studs are strictly prohibited to maintain the quality of the FIFA-certified grass. Please use standard rubber studs or turf shoes." },
+                ta: { q: "Turf-la metal studs use pannalama?", a: "Kandippa koodathu! FIFA-certified grass damage aagidum. Normal rubber studs illa turf shoes mattum use pannunga." }
               },
               {
-                q: "Do you provide footballs and bibs?",
-                a: "Yes! We provide one high-quality football and standard bibs for your session at no extra cost. Just collect them from the manager's office."
+                en: { q: "Do you provide footballs and bibs?", a: "Yes! We provide one high-quality football and standard bibs for your session at no extra cost. Just collect them from the manager's office." },
+                ta: { q: "Football and bibs neengale tharuvingala?", a: "Aama! Oru nalla quality football-um, vilayada thevayana bibs-um free-ah tharuvom. Manager office-la kettukonga." }
               },
               {
-                q: "Can we play during heavy rain?",
-                a: "Our turf has an advanced drainage system, so light to moderate rain is perfectly fine. However, in case of thunderstorms, we will reschedule your slot for safety."
+                en: { q: "Can we play during heavy rain?", a: "Our turf has an advanced drainage system, so light to moderate rain is perfectly fine. However, in case of thunderstorms, we will reschedule your slot for safety." },
+                ta: { q: "Mazhai peiyum pothu vilayadalama?", a: "Namma turf-la super drainage system irukku, so normal mazhai-na prechanai illa. Aana idi, minnal iruntha safety-kaga unga slot-a vera time-ku mathi tharuvom." }
               },
               {
-                q: "What is your cancellation policy?",
-                a: "Cancellations made 24 hours before the slot are eligible for a full refund or reschedule. Last-minute cancellations are non-refundable."
+                en: { q: "What is your cancellation policy?", a: "Cancellations made 24 hours before the slot are eligible for a full refund or reschedule. Last-minute cancellations are non-refundable." },
+                ta: { q: "Slot cancel panna mudiyuma?", a: "24 hours-ku munnadi cancel panna full amount refund aagum illa vera slot book pannikalam. Last minute-la cancel panna refund kedaikathu." }
               }
             ].map((faq, i) => (
               <div key={i} className="bg-[#0a120a] border border-white/5 rounded-2xl p-6 hover:border-white/20 transition-colors">
                 <h4 className="text-lg font-bold text-white mb-2 flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-white block"></span> {faq.q}
+                  <span className="w-2 h-2 rounded-full bg-white block"></span> {faqLang === 'en' ? faq.en.q : faq.ta.q}
                 </h4>
-                <p className="text-slate-400 text-sm leading-relaxed pl-5">{faq.a}</p>
+                <p className="text-slate-400 text-sm leading-relaxed pl-5">{faqLang === 'en' ? faq.en.a : faq.ta.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CONTACT SECTION ── */}
-      <section id="contact" className="py-24 relative bg-[#060a06] border-t border-white/5 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Contact Us</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-6">Get In Touch</h3>
-              <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-md">
-                Have questions about booking or organizing a tournament? We are here to help you get onto the pitch.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/50 transition-all">
-                    <MapPin className="w-6 h-6 text-zinc-300" />
-                  </div>
-                  <div>
-                    <h5 className="text-white font-bold uppercase tracking-wider text-sm">Location</h5>
-                    <p className="text-slate-400 text-sm mt-1">123 Sports Arena Road, City Center</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/50 transition-all">
-                    <Phone className="w-6 h-6 text-zinc-300" />
-                  </div>
-                  <div>
-                    <h5 className="text-white font-bold uppercase tracking-wider text-sm">Phone</h5>
-                    <p className="text-slate-400 text-sm mt-1">+91 98765 43210</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/50 transition-all">
-                    <Mail className="w-6 h-6 text-zinc-300" />
-                  </div>
-                  <div>
-                    <h5 className="text-white font-bold uppercase tracking-wider text-sm">Email</h5>
-                    <p className="text-slate-400 text-sm mt-1">book@vaadivaasal.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Glassmorphism Contact Form */}
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-br from-zinc-600 to-zinc-900 rounded-[2rem] blur opacity-30" />
-              <div className="relative bg-[#0a120a]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
-                <form className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Your Name</label>
-                    <input type="text" className="w-full h-14 rounded-xl bg-white/5 border border-white/10 px-4 text-white placeholder-slate-600 focus:outline-none focus:border-white focus:ring-1 focus:ring-emerald-500 transition-all" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Phone Number</label>
-                    <input type="tel" className="w-full h-14 rounded-xl bg-white/5 border border-white/10 px-4 text-white placeholder-slate-600 focus:outline-none focus:border-white focus:ring-1 focus:ring-emerald-500 transition-all" placeholder="+91 00000 00000" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-400">Message</label>
-                    <textarea rows={4} className="w-full rounded-xl bg-white/5 border border-white/10 p-4 text-white placeholder-slate-600 focus:outline-none focus:border-white focus:ring-1 focus:ring-emerald-500 transition-all resize-none" placeholder="How can we help you?"></textarea>
-                  </div>
-                  <button type="button" className="w-full h-14 rounded-xl bg-white text-[#060a06] font-black text-sm uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors">
-                    Send Message <Send className="w-4 h-4" />
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── FOOTER ── */}
       <footer className="border-t border-white/10 bg-[#0a120a] py-16">
@@ -434,10 +435,10 @@ export default function Home() {
           <div>
             <h4 className="text-white font-bold uppercase tracking-wider mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-slate-400 hover:text-white transition-colors text-sm">About Us</a></li>
+              <li><a href="/about" className="text-slate-400 hover:text-white transition-colors text-sm">About Us</a></li>
+              <li><a href="/facilities" className="text-slate-400 hover:text-white transition-colors text-sm">Facilities</a></li>
               <li><a href="#pricing" className="text-slate-400 hover:text-white transition-colors text-sm">Pricing Plans</a></li>
-              <li><a href="#gallery" className="text-slate-400 hover:text-white transition-colors text-sm">Gallery</a></li>
-              <li><a href="#contact" className="text-slate-400 hover:text-white transition-colors text-sm">Contact</a></li>
+              <li><a href="/contact" className="text-slate-400 hover:text-white transition-colors text-sm">Contact</a></li>
             </ul>
           </div>
 

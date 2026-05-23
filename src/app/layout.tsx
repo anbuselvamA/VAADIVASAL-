@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter, Bebas_Neue, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const outfit = Outfit({
-  variable: "--font-sans",
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-heading",
   subsets: ["latin"],
 });
 
@@ -20,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} h-full antialiased dark`}
+      className={cn("h-full", "antialiased", "dark", bebasNeue.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
