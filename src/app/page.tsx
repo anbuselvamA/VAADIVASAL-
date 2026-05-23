@@ -8,6 +8,9 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { motion } from "framer-motion";
 import { Calendar, Award, Flame, Car, Droplets, Shield, MapPin, Play, Phone, Mail, Send, CheckCircle2, Star, Users, Wind, Trophy, MessageCircle } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function Home() {
   const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
@@ -69,86 +72,69 @@ export default function Home() {
         Special Weekend Offer: Flat 10% off on all midnight slots! Use Code: NIGHTOWL
       </div>
 
-      {/* ── LUXURY STICKY NAVBAR ── */}
-      <div className="sticky top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 pb-2 pointer-events-none">
-        <nav className="pointer-events-auto w-full max-w-7xl px-6 py-3 border border-white/10 bg-[#060a06]/80 backdrop-blur-2xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] flex items-center justify-between transition-all duration-500">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#10b981] to-emerald-400 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <Award className="w-5 h-5 text-black" />
-            </div>
-            <span className="text-xl font-black tracking-tight text-white uppercase font-heading mt-1">VAADIVAASAL</span>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest bg-white/5 p-1.5 rounded-xl border border-white/5">
-            {[
-              { name: "Home", href: "#home" },
-              { name: "About", href: "/about" },
-              { name: "Facilities", href: "/facilities" },
-              { name: "Contact", href: "/contact" }
-            ].map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-300 relative group overflow-hidden"
-              >
-                <span className="relative z-10">{link.name}</span>
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#10b981] group-hover:w-1/2 transition-all duration-300"></span>
-              </a>
-            ))}
-          </div>
-
-          <a href="/booking" className="bg-white hover:bg-zinc-200 text-[#060a06] font-black uppercase tracking-wide px-6 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
-            <Calendar className="w-4 h-4" /> Book Slot
-          </a>
-        </nav>
-      </div>
+      {/* ── SHARED NAVBAR ── */}
+      <Navbar />
 
       {/* ── HOME / HERO SECTION ── */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12">
-        <div className="absolute inset-0">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Full Screen Cinematic Background */}
+        <div className="absolute inset-0 z-0">
           <Image
             src="/turf_night_view.png"
             alt="Cinematic Turf Background"
             fill
-            className="object-cover object-center opacity-50"
+            className="object-cover object-center scale-105 animate-[pulse_10s_ease-in-out_infinite]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#060a06]/40 via-[#060a06]/60 to-[#060a06]" />
+          {/* Intense Black Overlays for Cinematic Depth */}
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/20 to-[#060a06]/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#060a06_100%)] opacity-80" />
         </div>
         
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.2)" />
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.4)" />
         <BackgroundBeams />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center mt-8 mb-12">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center mt-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="flex flex-col items-center w-full"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 mb-8 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
-              <span className="text-[10px] font-black tracking-widest text-[#10b981] uppercase">Open 24/7 • Live Booking</span>
+            {/* Live Indicator */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#10b981]/50 bg-[#060a06]/50 mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse shadow-[0_0_8px_#10b981]"></span>
+              <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] text-white uppercase">Open 24/7 • Live Booking</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-black font-heading uppercase tracking-tight leading-[0.9] text-white drop-shadow-2xl max-w-5xl">
-              VIRUDHACHALAM’S<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-emerald-400 to-green-200 mt-2 inline-block">
-                PREMIUM CRICKET
-              </span><br />
-              & FOOTBALL TURF
+            {/* Bold Premium Typography */}
+            <h2 className="text-emerald-400 text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
+              Virudhachalam’s Finest
+            </h2>
+            <h1 className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black font-heading uppercase tracking-tighter leading-[0.8] text-white drop-shadow-2xl flex flex-col items-center">
+              <span>PREMIUM</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-[#10b981] -mt-2 sm:-mt-4">CRICKET</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] to-emerald-600 -mt-2 sm:-mt-4 text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem]">& FOOTBALL</span>
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-slate-300 font-medium max-w-2xl leading-relaxed drop-shadow-lg tracking-wide">
-              Book Instantly • Floodlights • Parking • Night Matches
+            <p className="mt-8 text-lg sm:text-xl md:text-2xl text-slate-300 font-medium max-w-3xl leading-relaxed drop-shadow-lg tracking-wide">
+              Experience the perfect pitch. <span className="text-white font-bold">Floodlights • Premium Grass • Instant Booking.</span>
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
-              <a href="/booking" className="h-14 px-8 rounded-xl bg-[#10b981] text-black font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#059669] transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]">
-                <Calendar className="w-5 h-5" /> Book Instantly
+            {/* Animated CTA Buttons */}
+            <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
+              {/* Spinning Border Premium Button */}
+              <a href="/booking" className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none group shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.5)] transition-shadow duration-500">
+                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#060a06_0%,#10b981_50%,#060a06_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#060a06] px-8 sm:px-12 py-3 text-sm sm:text-base font-black uppercase tracking-widest text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-transparent group-hover:text-black">
+                  <Calendar className="w-5 h-5 mr-3" /> Book Instantly
+                </span>
               </a>
-              <a href="/about" className="h-14 px-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-white/10 transition-colors">
-                Explore Our Story
+
+              {/* Secondary Ghost Button */}
+              <a href="/about" className="h-16 px-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-white/10 hover:border-white/40 transition-all duration-300">
+                <Play className="w-5 h-5" /> Watch Trailer
               </a>
             </div>
             
@@ -394,81 +380,40 @@ export default function Home() {
                 en: { q: "Can we play during heavy rain?", a: "Our turf has an advanced drainage system, so light to moderate rain is perfectly fine. However, in case of thunderstorms, we will reschedule your slot for safety." },
                 ta: { q: "Mazhai peiyum pothu vilayadalama?", a: "Namma turf-la super drainage system irukku, so normal mazhai-na prechanai illa. Aana idi, minnal iruntha safety-kaga unga slot-a vera time-ku mathi tharuvom." }
               },
-              {
-                en: { q: "What is your cancellation policy?", a: "Cancellations made 24 hours before the slot are eligible for a full refund or reschedule. Last-minute cancellations are non-refundable." },
-                ta: { q: "Slot cancel panna mudiyuma?", a: "24 hours-ku munnadi cancel panna full amount refund aagum illa vera slot book pannikalam. Last minute-la cancel panna refund kedaikathu." }
-              }
-            ].map((faq, i) => (
-              <div key={i} className="bg-[#0a120a] border border-white/5 rounded-2xl p-6 hover:border-white/20 transition-colors">
-                <h4 className="text-lg font-bold text-white mb-2 flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-white block"></span> {faqLang === 'en' ? faq.en.q : faq.ta.q}
-                </h4>
-                <p className="text-slate-400 text-sm leading-relaxed pl-5">{faqLang === 'en' ? faq.en.a : faq.ta.a}</p>
-              </div>
-            ))}
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {[
+                {
+                  en: { q: "Do you provide footballs and bibs?", a: "Yes! We provide one high-quality football and standard bibs for your session at no extra cost. Just collect them from the manager's office." },
+                  ta: { q: "Football and bibs neengale tharuvingala?", a: "Aama! Oru nalla quality football-um, vilayada thevayana bibs-um free-ah tharuvom. Manager office-la kettukonga." }
+                },
+                {
+                  en: { q: "Can we play during heavy rain?", a: "Our turf has an advanced drainage system, so light to moderate rain is perfectly fine. However, in case of thunderstorms, we will reschedule your slot for safety." },
+                  ta: { q: "Mazhai peiyum pothu vilayadalama?", a: "Namma turf-la super drainage system irukku, so normal mazhai-na prechanai illa. Aana idi, minnal iruntha safety-kaga unga slot-a vera time-ku mathi tharuvom." }
+                },
+                {
+                  en: { q: "What is your cancellation policy?", a: "Cancellations made 24 hours before the slot are eligible for a full refund or reschedule. Last-minute cancellations are non-refundable." },
+                  ta: { q: "Slot cancel panna mudiyuma?", a: "24 hours-ku munnadi cancel panna full amount refund aagum illa vera slot book pannikalam. Last minute-la cancel panna refund kedaikathu." }
+                }
+              ].map((faq, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="bg-[#0a120a] border border-white/5 rounded-2xl px-6 data-[state=open]:border-[#10b981]/50 transition-colors">
+                  <AccordionTrigger className="hover:no-underline text-left text-lg font-bold text-white py-6">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-white block"></span> {faqLang === 'en' ? faq.en.q : faq.ta.q}
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-400 text-sm leading-relaxed pl-5 pb-6">
+                    {faqLang === 'en' ? faq.en.a : faq.ta.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
 
 
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-white/10 bg-[#0a120a] py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <Award className="w-8 h-8 text-white" />
-              <span className="text-2xl font-black tracking-tight text-white uppercase">VAADIVAASAL TURF</span>
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-              Experience the perfect playing environment where passion meets performance. The finest FIFA-quality turf in the city.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                <Star className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                <Users className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><a href="/about" className="text-slate-400 hover:text-white transition-colors text-sm">About Us</a></li>
-              <li><a href="/facilities" className="text-slate-400 hover:text-white transition-colors text-sm">Facilities</a></li>
-              <li><a href="#pricing" className="text-slate-400 hover:text-white transition-colors text-sm">Pricing Plans</a></li>
-              <li><a href="/contact" className="text-slate-400 hover:text-white transition-colors text-sm">Contact</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Operating Hours</h4>
-            <ul className="space-y-3">
-              <li className="flex justify-between text-sm">
-                <span className="text-slate-400">Monday - Friday</span>
-                <span className="text-white font-bold">24 Hours</span>
-              </li>
-              <li className="flex justify-between text-sm">
-                <span className="text-slate-400">Saturday - Sunday</span>
-                <span className="text-white font-bold">24 Hours</span>
-              </li>
-              <li className="flex justify-between text-sm mt-4 pt-4 border-t border-white/10">
-                <span className="text-zinc-500">Support</span>
-                <span className="text-white font-bold">09:00 AM - 09:00 PM</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">© 2026 Vaadivaasal Turf. All rights reserved.</p>
-          <div className="flex gap-6 text-xs font-bold uppercase text-slate-500 tracking-widest">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-          </div>
-        </div>
-      </footer>
+      {/* ── SHARED FOOTER ── */}
+      <Footer />
       {/* ── FLOATING WHATSAPP BUTTON ── */}
       <a 
         href="https://wa.me/919876543210" 

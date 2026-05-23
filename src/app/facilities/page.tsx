@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Spotlight } from "@/components/ui/spotlight";
 import { Award, Calendar, Flame, Car, Droplets, Star, Users, MessageCircle, Activity, Coffee, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import Masonry from "react-masonry-css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function FacilitiesPage() {
   const galleryImages = [
@@ -19,39 +22,8 @@ export default function FacilitiesPage() {
   return (
     <main className="min-h-screen bg-[#060a06] text-slate-100 font-sans selection:bg-white/30 relative">
       
-      {/* ── LUXURY STICKY NAVBAR ── */}
-      <div className="sticky top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 pb-2 pointer-events-none">
-        <nav className="pointer-events-auto w-full max-w-7xl px-6 py-3 border border-white/10 bg-[#060a06]/80 backdrop-blur-2xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] flex items-center justify-between transition-all duration-500">
-          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.location.href = '/'}>
-            <div className="w-8 h-8 bg-gradient-to-br from-[#10b981] to-emerald-400 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <Award className="w-5 h-5 text-black" />
-            </div>
-            <span className="text-xl font-black tracking-tight text-white uppercase font-heading mt-1">VAADIVAASAL</span>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-widest bg-white/5 p-1.5 rounded-xl border border-white/5">
-            {[
-              { name: "Home", href: "/" },
-              { name: "About", href: "/about" },
-              { name: "Facilities", href: "/facilities" },
-              { name: "Contact", href: "/contact" }
-            ].map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-300 relative group overflow-hidden"
-              >
-                <span className="relative z-10">{link.name}</span>
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#10b981] group-hover:w-1/2 transition-all duration-300"></span>
-              </a>
-            ))}
-          </div>
-
-          <a href="/booking" className="bg-white hover:bg-zinc-200 text-[#060a06] font-black uppercase tracking-wide px-6 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
-            <Calendar className="w-4 h-4" /> Book Slot
-          </a>
-        </nav>
-      </div>
+      {/* ── SHARED NAVBAR ── */}
+      <Navbar />
 
       {/* ── CINEMATIC HEADER ── */}
       <section className="relative pt-32 pb-20 flex items-center justify-center overflow-hidden border-b border-white/5">
@@ -84,25 +56,33 @@ export default function FacilitiesPage() {
             <h3 className="text-4xl md:text-5xl font-black font-heading text-white uppercase tracking-tight">The Playing Surface</h3>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Masonry
+            breakpointCols={{
+              default: 3,
+              1024: 2,
+              640: 1
+            }}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
             {galleryImages.map((src, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative aspect-video rounded-3xl overflow-hidden cursor-pointer border border-white/5 bg-black group"
+                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                className="relative rounded-[2rem] overflow-hidden cursor-pointer border border-white/5 bg-black group mb-6"
               >
                 {src.startsWith('http') ? (
-                  <img src={src} alt={`Turf Ground ${i}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={src} alt={`Turf Ground ${i}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
                 ) : (
-                  <Image src={src} alt={`Turf Ground ${i}`} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={src} alt={`Turf Ground ${i}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
-          </div>
+          </Masonry>
         </div>
       </section>
 
@@ -139,56 +119,8 @@ export default function FacilitiesPage() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-white/10 bg-[#0a120a] py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <Award className="w-8 h-8 text-white" />
-              <span className="text-2xl font-black tracking-tight text-white uppercase font-heading">VAADIVAASAL TURF</span>
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-              Experience the perfect playing environment where passion meets performance. The finest FIFA-quality turf in the city.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                <Star className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                <Users className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><a href="/" className="text-slate-400 hover:text-white transition-colors text-sm">Home</a></li>
-              <li><a href="/about" className="text-slate-400 hover:text-white transition-colors text-sm">About Us</a></li>
-              <li><a href="/#pricing" className="text-slate-400 hover:text-white transition-colors text-sm">Pricing Plans</a></li>
-              <li><a href="/#contact" className="text-slate-400 hover:text-white transition-colors text-sm">Contact</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Operating Hours</h4>
-            <ul className="space-y-3">
-              <li className="flex justify-between text-sm">
-                <span className="text-slate-400">Monday - Sunday</span>
-                <span className="text-white font-bold">24 Hours</span>
-              </li>
-              <li className="flex justify-between text-sm mt-4 pt-4 border-t border-white/10">
-                <span className="text-zinc-500">Support</span>
-                <span className="text-white font-bold">09:00 AM - 09:00 PM</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">© 2026 Vaadivaasal Turf. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* ── SHARED FOOTER ── */}
+      <Footer />
 
       {/* ── FLOATING WHATSAPP BUTTON ── */}
       <a 
