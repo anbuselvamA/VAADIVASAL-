@@ -6,7 +6,7 @@ import { Highlight } from "@/components/ui/hero-highlight";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { NumberTicker } from "@/components/ui/number-ticker";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, Award, Flame, Car, Droplets, Shield, MapPin, Play, Phone, Mail, Send, CheckCircle2, Star, Users, Wind, Trophy, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,6 +17,8 @@ import { Marquee } from "@/components/ui/marquee";
 
 export default function Home() {
   const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
+  const { scrollY } = useScroll();
+  const yHero = useTransform(scrollY, [0, 1000], [0, 250]);
 
   const pricingPlans = [
     {
@@ -82,13 +84,15 @@ export default function Home() {
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Full Screen Cinematic Background */}
         <div className="absolute inset-0 z-0 bg-[#060a06] overflow-hidden">
-          <Image
-            src="/turf_night_view.png"
-            alt="Cinematic Turf Background"
-            fill
-            className="object-cover object-center opacity-40 md:opacity-60"
-            priority
-          />
+          <motion.div style={{ y: yHero }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
+            <Image
+              src="/turf_night_view.png"
+              alt="Cinematic Turf Background"
+              fill
+              className="object-cover object-center opacity-40 md:opacity-60"
+              priority
+            />
+          </motion.div>
           {/* Intense Black Overlays for Cinematic Depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/40 to-[#060a06]/90" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#060a06_100%)] opacity-80" />
@@ -247,10 +251,10 @@ export default function Home() {
             {pricingPlans.map((plan, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.2 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className={`relative rounded-[2.5rem] p-8 border ${plan.popular ? 'bg-[#0a120a] border-white  md:-translate-y-4' : 'bg-white/5 border-white/10 backdrop-blur-sm'}`}
               >
                 {plan.popular && (
@@ -289,9 +293,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-yellow-500/30 bg-yellow-500/10 mb-6">
@@ -318,7 +322,6 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-
               <a href="#contact" className="h-14 px-8 inline-flex rounded-xl bg-white text-[#060a06] font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-zinc-200 transition-colors">
                 Enquire Now <Award className="w-5 h-5" />
               </a>
@@ -327,7 +330,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
               className="relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group"
             >

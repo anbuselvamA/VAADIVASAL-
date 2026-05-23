@@ -51,6 +51,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">© 2026 Vaadivaasal Turf. All rights reserved.</p>
       </div>
+
+      {/* Oversized Typography */}
+      <div className="w-full overflow-hidden flex justify-center mt-12 pb-4 opacity-20 pointer-events-none select-none">
+        <h1 className="text-[12vw] font-black font-heading tracking-tighter leading-none text-white whitespace-nowrap">
+          VAADIVAASAL
+        </h1>
+      </div>
     </footer>
   );
 }
