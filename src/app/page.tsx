@@ -367,20 +367,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-4">
-            {[
-              {
-                en: { q: "Are metal studs allowed on the turf?", a: "No, metal studs are strictly prohibited to maintain the quality of the FIFA-certified grass. Please use standard rubber studs or turf shoes." },
-                ta: { q: "Turf-la metal studs use pannalama?", a: "Kandippa koodathu! FIFA-certified grass damage aagidum. Normal rubber studs illa turf shoes mattum use pannunga." }
-              },
-              {
-                en: { q: "Do you provide footballs and bibs?", a: "Yes! We provide one high-quality football and standard bibs for your session at no extra cost. Just collect them from the manager's office." },
-                ta: { q: "Football and bibs neengale tharuvingala?", a: "Aama! Oru nalla quality football-um, vilayada thevayana bibs-um free-ah tharuvom. Manager office-la kettukonga." }
-              },
-              {
-                en: { q: "Can we play during heavy rain?", a: "Our turf has an advanced drainage system, so light to moderate rain is perfectly fine. However, in case of thunderstorms, we will reschedule your slot for safety." },
-                ta: { q: "Mazhai peiyum pothu vilayadalama?", a: "Namma turf-la super drainage system irukku, so normal mazhai-na prechanai illa. Aana idi, minnal iruntha safety-kaga unga slot-a vera time-ku mathi tharuvom." }
-              },
-            <Accordion type="single" collapsible className="w-full space-y-4">
+            <Accordion className="w-full space-y-4">
               {[
                 {
                   en: { q: "Do you provide footballs and bibs?", a: "Yes! We provide one high-quality football and standard bibs for your session at no extra cost. Just collect them from the manager's office." },

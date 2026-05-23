@@ -56,10 +56,8 @@ export default function Navbar() {
           {/* Mobile Menu Sheet */}
           <div className="lg:hidden pointer-events-auto">
             <Sheet>
-              <SheetTrigger asChild>
-                <button className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-                  <Menu className="w-5 h-5" />
-                </button>
+              <SheetTrigger className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+                <Menu className="w-5 h-5" />
               </SheetTrigger>
               <SheetContent side="right" className="bg-[#060a06]/95 backdrop-blur-3xl border-l border-white/10 w-[300px] sm:w-[400px]">
                 <div className="flex flex-col h-full pt-10">
