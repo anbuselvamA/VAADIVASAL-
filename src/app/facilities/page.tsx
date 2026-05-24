@@ -101,8 +101,7 @@ export default function FacilitiesPage() {
               { icon: <Car className="w-8 h-8 text-white" />, title: "Secure Parking", desc: "CCTV monitored spacious parking facility for cars and bikes." },
               { icon: <Droplets className="w-8 h-8 text-white" />, title: "Washrooms & Showers", desc: "Clean, hygienic changing rooms and showers for post-match freshness." },
               { icon: <Activity className="w-8 h-8 text-white" />, title: "Pro Equipment", desc: "High-quality footballs, standard bibs, and first-aid kits available on site." },
-              { icon: <Coffee className="w-8 h-8 text-white" />, title: "Refreshment Area", desc: "Seating lounge with access to cold water and sports drinks." },
-              { icon: <ShieldCheck className="w-8 h-8 text-white" />, title: "24/7 Security", desc: "Fully compounded area with round-the-clock security personnel." }
+              { icon: <Coffee className="w-8 h-8 text-white" />, title: "Refreshment Area", desc: "Seating lounge with access to cold water and sports drinks." }
             ].map((item, idx) => (
               <div 
                 key={idx} 
