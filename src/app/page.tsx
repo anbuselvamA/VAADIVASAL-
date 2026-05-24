@@ -9,6 +9,7 @@ import { NumberTicker } from "@/components/ui/number-ticker";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, Award, Flame, Car, Droplets, Shield, MapPin, Play, Phone, Mail, Send, CheckCircle2, Star, Users, Wind, Trophy, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Meteors } from "@/components/ui/meteors";
@@ -143,9 +144,9 @@ export default function Home() {
                 </div>
 
                 <div className="p-6 flex flex-col justify-center bg-[#065f2e]">
-                  <a href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider hover:scale-105 transition-transform gap-2">
+                  <Link href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider hover:scale-105 transition-transform gap-2">
                     <Calendar className="w-5 h-5" /> Book Now
-                  </a>
+                  </Link>
                 </div>
 
               </div>
@@ -222,9 +223,9 @@ export default function Home() {
         
         {/* View All Facilities Button */}
         <div className="mt-12 flex justify-center">
-          <a href="/facilities" className="h-14 px-8 rounded-none border-2 border-[#065f2e] bg-white text-[#065f2e] font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#065f2e] hover:text-white transition-colors">
+          <Link href="/facilities" className="h-14 px-8 rounded-none border-2 border-[#065f2e] bg-white text-[#065f2e] font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#065f2e] hover:text-white transition-colors">
             View All Facilities
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -267,9 +268,9 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <a href="/booking" className={`w-full py-4 rounded-none font-black uppercase tracking-wider text-sm transition-all flex justify-center items-center ${plan.popular ? 'bg-[#065f2e] text-white hover:bg-[#04401f]' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
+                <Link href="/booking" className={`w-full py-4 rounded-none font-black uppercase tracking-wider text-sm transition-all flex justify-center items-center ${plan.popular ? 'bg-[#065f2e] text-white hover:bg-[#04401f]' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
                   Select Plan
-                </a>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -310,9 +311,9 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="h-14 px-8 inline-flex rounded-none bg-[#065f2e] text-white font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-[#04401f] transition-colors shadow-sm">
+              <Link href="#contact" className="h-14 px-8 inline-flex rounded-none bg-[#065f2e] text-white font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-[#04401f] transition-colors shadow-sm">
                 Enquire Now <Award className="w-5 h-5" />
-              </a>
+              </Link>
             </motion.div>
 
             <motion.div

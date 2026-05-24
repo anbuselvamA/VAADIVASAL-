@@ -7,9 +7,18 @@ export function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Check if user has already seen preloader in this session
+    const hasSeen = sessionStorage.getItem("hasSeenPreloader");
+    
+    if (hasSeen) {
+      setIsLoading(false);
+      return;
+    }
+
     // Hide the preloader after 1.8 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
+      sessionStorage.setItem("hasSeenPreloader", "true");
     }, 1800);
 
     return () => clearTimeout(timer);

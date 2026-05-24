@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Award, Star, Users } from "lucide-react";
 
 export default function Footer() {
@@ -26,10 +27,10 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-black italic uppercase tracking-wider mb-6">Quick Links</h4>
           <ul className="space-y-3">
-            <li><a href="/" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Home</a></li>
-            <li><a href="/about" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">About Us</a></li>
-            <li><a href="/facilities" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Facilities</a></li>
-            <li><a href="/contact" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Contact</a></li>
+            <li><Link href="/" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Home</Link></li>
+            <li><Link href="/about" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">About Us</Link></li>
+            <li><Link href="/facilities" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Facilities</Link></li>
+            <li><Link href="/contact" className="text-zinc-400 hover:text-white transition-colors text-sm font-bold">Contact</Link></li>
           </ul>
         </div>
 
