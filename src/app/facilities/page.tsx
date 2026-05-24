@@ -20,28 +20,28 @@ export default function FacilitiesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#060a06] text-slate-100 font-sans selection:bg-white/30 relative">
+    <main className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-[#065f2e]/20 relative">
       
       {/* ── SHARED NAVBAR ── */}
       <Navbar />
 
       {/* ── CINEMATIC HEADER ── */}
-      <section className="relative pt-32 pb-20 flex items-center justify-center overflow-hidden border-b border-white/5">
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.15)" />
+      <section className="relative pt-32 pb-20 flex items-center justify-center overflow-hidden border-b border-zinc-200 bg-white">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-8 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#10b981]"></span>
-              <span className="text-[10px] font-black tracking-widest text-zinc-300 uppercase">Premium Amenities</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-zinc-200 bg-zinc-50 mb-8 shadow-sm">
+              <span className="w-2 h-2 rounded-none bg-[#065f2e]"></span>
+              <span className="text-[10px] font-black tracking-widest text-[#065f2e] uppercase">Premium Amenities</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-heading uppercase tracking-tight text-white drop-shadow-2xl">
-              WORLD-CLASS <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-emerald-400 to-green-200">FACILITIES</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-heading uppercase tracking-tight italic text-zinc-900 drop-shadow-sm">
+              WORLD-CLASS <span className="text-[#065f2e]">FACILITIES</span>
             </h1>
-            <p className="mt-8 text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-8 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
               Every inch of our turf is designed to deliver a professional, safe, and exhilarating experience. Explore what makes us the best in the city.
             </p>
           </motion.div>
@@ -49,11 +49,11 @@ export default function FacilitiesPage() {
       </section>
 
       {/* ── EXPANDED GALLERY ── */}
-      <section className="py-24 bg-[#0a120a]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
-            <h3 className="text-4xl md:text-5xl font-black font-heading text-white uppercase tracking-tight">The Playing Surface</h3>
+      <section className="py-16 md:py-24 bg-zinc-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
+            <h3 className="text-4xl md:text-5xl font-black font-heading text-zinc-900 uppercase italic tracking-tight">THE PLAYING SURFACE</h3>
           </div>
           
           <Masonry
@@ -72,14 +72,14 @@ export default function FacilitiesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-                className="relative rounded-[2rem] overflow-hidden cursor-pointer border border-white/5 bg-black group mb-6"
+                className="relative rounded-none overflow-hidden cursor-pointer border border-zinc-200 bg-white shadow-sm group mb-6"
               >
                 {src.startsWith('http') ? (
                   <img src={src} alt={`Turf Ground ${i}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
                 ) : (
-                  <img src={src} alt={`Turf Ground ${i}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={src} alt={`Turf Ground ${i}`} width={800} height={600} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
           </Masonry>
@@ -87,32 +87,32 @@ export default function FacilitiesPage() {
       </section>
 
       {/* ── DETAILED AMENITIES LIST ── */}
-      <section className="py-24 bg-[#060a06] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">What We Offer</h2>
-            <h3 className="text-4xl md:text-5xl font-black font-heading text-white uppercase tracking-tight">Everything You Need</h3>
+      <section className="py-16 md:py-24 bg-white border-t border-zinc-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">What We Offer</h2>
+            <h3 className="text-4xl md:text-5xl font-black font-heading text-zinc-900 uppercase italic tracking-tight">EVERYTHING YOU NEED</h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
-              { icon: <Award className="w-8 h-8 text-[#10b981]" />, title: "FIFA Certified Grass", desc: "Non-abrasive, 50mm premium synthetic turf designed to prevent injuries." },
-              { icon: <Flame className="w-8 h-8 text-[#10b981]" />, title: "High-Mast Lighting", desc: "Stadium-grade 200W LED floodlights for zero-shadow night matches." },
-              { icon: <Car className="w-8 h-8 text-[#10b981]" />, title: "Secure Parking", desc: "CCTV monitored spacious parking facility for cars and bikes." },
-              { icon: <Droplets className="w-8 h-8 text-[#10b981]" />, title: "Washrooms & Showers", desc: "Clean, hygienic changing rooms and showers for post-match freshness." },
-              { icon: <Activity className="w-8 h-8 text-[#10b981]" />, title: "Pro Equipment", desc: "High-quality footballs, standard bibs, and first-aid kits available on site." },
-              { icon: <Coffee className="w-8 h-8 text-[#10b981]" />, title: "Refreshment Area", desc: "Seating lounge with access to cold water and sports drinks." },
-              { icon: <ShieldCheck className="w-8 h-8 text-[#10b981]" />, title: "24/7 Security", desc: "Fully compounded area with round-the-clock security personnel." }
+              { icon: <Award className="w-8 h-8 text-white" />, title: "FIFA Certified Grass", desc: "Non-abrasive, 50mm premium synthetic turf designed to prevent injuries." },
+              { icon: <Flame className="w-8 h-8 text-white" />, title: "High-Mast Lighting", desc: "Stadium-grade 200W LED floodlights for zero-shadow night matches." },
+              { icon: <Car className="w-8 h-8 text-white" />, title: "Secure Parking", desc: "CCTV monitored spacious parking facility for cars and bikes." },
+              { icon: <Droplets className="w-8 h-8 text-white" />, title: "Washrooms & Showers", desc: "Clean, hygienic changing rooms and showers for post-match freshness." },
+              { icon: <Activity className="w-8 h-8 text-white" />, title: "Pro Equipment", desc: "High-quality footballs, standard bibs, and first-aid kits available on site." },
+              { icon: <Coffee className="w-8 h-8 text-white" />, title: "Refreshment Area", desc: "Seating lounge with access to cold water and sports drinks." },
+              { icon: <ShieldCheck className="w-8 h-8 text-white" />, title: "24/7 Security", desc: "Fully compounded area with round-the-clock security personnel." }
             ].map((item, idx) => (
               <div 
                 key={idx} 
-                className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 hover:border-[#10b981]/30 transition-all group"
+                className="bg-zinc-50 border border-zinc-200 p-8 rounded-none shadow-sm hover:border-[#065f2e] hover:shadow-md transition-all group"
               >
-                <div className="w-16 h-16 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-inner">
+                <div className="w-16 h-16 rounded-none bg-[#065f2e] flex items-center justify-center mb-6 group-hover:scale-105 transition-transform shadow-sm">
                   {item.icon}
                 </div>
-                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">{item.title}</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                <h4 className="text-xl font-black italic text-zinc-900 mb-3 tracking-wide uppercase">{item.title}</h4>
+                <p className="text-zinc-600 font-medium text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
