@@ -15,6 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Meteors } from "@/components/ui/meteors";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Marquee } from "@/components/ui/marquee";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   const [faqLang, setFaqLang] = useState<'en' | 'ta'>('en');
@@ -82,79 +83,7 @@ export default function Home() {
       <Navbar />
 
       {/* ── HOME / HERO SECTION ── */}
-      <section id="home" className="relative flex flex-col items-center justify-start pt-32 pb-16 bg-zinc-50 overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="flex flex-col items-center w-full"
-          >
-            {/* Bold Premium Typography (Athletic Style) */}
-            <h2 className="text-xs sm:text-sm md:text-lg font-bold tracking-[0.3em] uppercase mb-4 text-[#065f2e] mt-4 sm:mt-10">
-              Virudhachalam’s Finest
-            </h2>
-            <h1 className="text-[3.5rem] leading-[0.85] sm:text-7xl md:text-8xl lg:text-[9rem] font-black font-heading uppercase italic tracking-tighter text-zinc-900 flex flex-col items-center">
-              <span>PREMIUM <span className="text-[#10b981]">CRICKET</span></span>
-              <span>& FOOTBALL</span>
-            </h1>
-
-            <p className="mt-6 text-sm sm:text-lg md:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed tracking-wide px-4">
-              Engineered for the pros, accessible for everyone. Experience the perfect pitch with floodlights and premium grass.
-            </p>
-
-            {/* Massive Accent Image Below Text (Desktop & Mobile) */}
-            <div className="w-full max-w-5xl mx-auto mt-12 relative h-[30vh] sm:h-[40vh] md:h-[50vh] overflow-hidden rounded-none shadow-xl border border-zinc-200">
-              <Image
-                src="/facilities_hero.png"
-                alt="Turf Day View"
-                fill
-                className="object-cover object-center"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 to-transparent" />
-            </div>
-
-            {/* Overlapping Search/Stats Box */}
-            <div className="w-full max-w-4xl mx-auto -mt-16 sm:-mt-24 relative z-20 bg-white rounded-none shadow-2xl border border-zinc-200">
-              <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-200 text-left">
-                
-                <div className="p-4 sm:p-6 flex flex-col justify-center">
-                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Happy Players</span>
-                  <span className="text-2xl sm:text-3xl font-black font-heading italic text-zinc-900 flex items-center">
-                    <NumberTicker value={50} />K+
-                  </span>
-                </div>
-                
-                <div className="p-4 sm:p-6 flex flex-col justify-center">
-                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Google Rating</span>
-                  <span className="text-2xl sm:text-3xl font-black font-heading italic text-[#065f2e] flex items-center gap-1 sm:gap-2">
-                    4.9 <Star className="w-4 h-4 sm:w-6 sm:h-6 fill-[#065f2e]" />
-                  </span>
-                </div>
-
-                <div className="p-4 sm:p-6 flex flex-col justify-center">
-                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Location</span>
-                  <span className="text-xl sm:text-2xl font-black font-heading italic text-zinc-900 leading-none">
-                    CITY CENTER
-                  </span>
-                </div>
-
-                <div className="p-4 sm:p-6 flex flex-col justify-center bg-[#065f2e] group cursor-pointer" onClick={() => window.location.href='/booking'}>
-                  <Link href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider group-hover:scale-[1.03] transition-transform gap-2 text-sm sm:text-base">
-                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5" /> Book
-                  </Link>
-                </div>
-
-              </div>
-            </div>
-
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection playerCount="50K" rating="4.9" whatsapp="919876543210" />
       {/* ── SWIPEABLE FEATURES BAR ── */}
       <section className="py-5 sm:py-6 bg-[#065f2e] border-none w-full border-t border-b border-zinc-200">
         <div className="flex overflow-x-auto snap-x snap-mandatory w-full hide-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] px-4 sm:px-8">
