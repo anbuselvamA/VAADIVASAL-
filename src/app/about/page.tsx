@@ -78,15 +78,19 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-square md:aspect-[4/3] rounded-none overflow-hidden border border-zinc-200 shadow-xl group"
+              className="relative aspect-square md:aspect-[4/3] rounded-none overflow-hidden border border-zinc-200 shadow-xl group bg-zinc-900"
             >
-              <Image src="/about_hero.png" alt="About Us" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-zinc-900/10 group-hover:bg-zinc-900/0 transition-colors duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white shadow-lg rounded-none flex items-center justify-center cursor-pointer hover:scale-105 transition-all">
-                  <Play className="w-8 h-8 sm:w-10 sm:h-10 text-[#065f2e] ml-1 sm:ml-2" />
-                </div>
-              </div>
+              <video 
+                src="/turf_video.mp4" 
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                className="w-full h-full object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
             </motion.div>
           </div>
         </div>
