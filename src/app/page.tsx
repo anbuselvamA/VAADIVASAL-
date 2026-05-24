@@ -109,7 +109,7 @@ export default function Home() {
             {/* Massive Accent Image Below Text (Desktop & Mobile) */}
             <div className="w-full max-w-5xl mx-auto mt-12 relative h-[30vh] sm:h-[40vh] md:h-[50vh] overflow-hidden rounded-none shadow-xl border border-zinc-200">
               <Image
-                src="/turf_day.jpg"
+                src="/facilities_hero.png"
                 alt="Turf Day View"
                 fill
                 className="object-cover object-center"
@@ -203,9 +203,9 @@ export default function Home() {
             className="flex gap-6 cursor-grab pb-8"
           >
             {[
-              { title: "Day View", img: "/turf_day.jpg" },
-              { title: "Night Lights", img: "/turf_night.png" },
-              { title: "Premium Grass", img: "/turf_grass.jpg" }
+              { title: "Day View", img: "/about_hero.png" },
+              { title: "Night Lights", img: "/turf_night_view.png" },
+              { title: "Premium Grass", img: "/facilities_hero.png" }
             ].map((item, i) => (
               <div key={i} className="min-w-[300px] md:min-w-[500px] bg-white rounded-none border border-zinc-200 overflow-hidden shadow-sm group">
                 <div className="relative h-[200px] md:h-[300px] overflow-hidden">
