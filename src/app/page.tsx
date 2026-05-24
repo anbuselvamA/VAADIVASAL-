@@ -155,21 +155,25 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      {/* ── MAGIC UI MARQUEE ── */}
-      <section className="py-6 bg-[#065f2e] border-none overflow-hidden">
-        <Marquee className="[--duration:30s]" repeat={6}>
-          {[
-            "⚽ FIFA Certified Grass",
-            "💡 High-Mast Lighting",
-            "🚿 Clean Washrooms",
-            "🚗 Premium Parking",
-            "🏆 Tournaments Allowed"
-          ].map((feature, i) => (
-            <div key={i} className="mx-8 text-white font-black text-sm md:text-lg tracking-widest uppercase flex items-center italic">
-              {feature}
-            </div>
-          ))}
-        </Marquee>
+      {/* ── SWIPEABLE FEATURES BAR ── */}
+      <section className="py-5 sm:py-6 bg-[#065f2e] border-none w-full border-t border-b border-zinc-200">
+        <div className="flex overflow-x-auto snap-x snap-mandatory w-full hide-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] px-4 sm:px-8">
+          <div className="flex items-center min-w-max gap-8 sm:gap-16 pb-1">
+            {[
+              "⚽ FIFA Certified Grass",
+              "💡 High-Mast Lighting",
+              "🚿 Clean Washrooms",
+              "🚗 Premium Parking",
+              "🏆 Tournaments Allowed",
+              "⚽ FIFA Certified Grass", // Duplicated for continuous feel
+              "💡 High-Mast Lighting"
+            ].map((feature, i) => (
+              <div key={i} className="snap-start text-white font-black text-sm md:text-lg tracking-widest uppercase flex items-center italic shrink-0">
+                {feature}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── GALLERY SECTION (Swipeable) ── */}
