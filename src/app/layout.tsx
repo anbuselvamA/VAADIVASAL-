@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue, Geist } from "next/font/google";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { Preloader } from "@/components/Preloader";
-import { CustomCursor } from "@/components/CustomCursor";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -55,11 +54,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", "dark", bebasNeue.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", bebasNeue.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900 selection:bg-[#065f2e] selection:text-white">
         <Preloader />
-        <CustomCursor />
         <SmoothScrolling>
           {children}
         </SmoothScrolling>

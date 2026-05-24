@@ -81,104 +81,81 @@ export default function Home() {
       <Navbar />
 
       {/* ── HOME / HERO SECTION ── */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Full Screen Cinematic Background */}
-        <div className="absolute inset-0 z-0 bg-[#060a06] overflow-hidden">
+      <section id="home" className="relative flex flex-col items-center justify-start min-h-[85vh] pt-32 pb-12">
+        {/* Top Half Dark Background */}
+        <div className="absolute top-0 left-0 right-0 h-[70vh] z-0 bg-[#060a06] overflow-hidden">
           <motion.div style={{ y: yHero }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
             <Image
               src="/turf_night_view.png"
               alt="Cinematic Turf Background"
               fill
-              className="object-cover object-center opacity-40 md:opacity-60"
+              className="object-cover object-center opacity-50"
               priority
             />
           </motion.div>
-          {/* Intense Black Overlays for Cinematic Depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-[#060a06]/40 to-[#060a06]/90" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#060a06_100%)] opacity-80" />
-          <Meteors number={30} />
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060a06]/80 via-transparent to-[#060a06]" />
         </div>
-        
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.4)" />
-        <BackgroundBeams />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center mt-10">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="flex flex-col items-center w-full"
           >
-            {/* Live Indicator */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#10b981]/50 bg-[#060a06]/50 mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse shadow-[0_0_8px_#10b981]"></span>
-              <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] text-white uppercase">Open 24/7 • Live Booking</span>
-            </div>
-
-            {/* Bold Premium Typography */}
-            <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)] bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-200 animate-pulse">
+            {/* Bold Premium Typography (Athletic Style) */}
+            <h2 className="text-sm sm:text-lg font-bold tracking-[0.3em] uppercase mb-4 text-white/80 mt-10">
               Virudhachalam’s Finest
             </h2>
-            <h1 className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black font-heading uppercase tracking-tighter leading-[0.8] text-white drop-shadow-2xl flex flex-col items-center">
-              <span>PREMIUM</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-[#10b981] -mt-2 sm:-mt-4">CRICKET</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] to-emerald-600 -mt-2 sm:-mt-4 text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem]">& FOOTBALL</span>
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-black font-heading uppercase italic tracking-tighter leading-[0.9] text-white drop-shadow-2xl flex flex-col items-center">
+              <span>PREMIUM <span className="text-[#10b981]">CRICKET</span></span>
+              <span>& FOOTBALL</span>
             </h1>
 
-            <p className="mt-8 text-lg sm:text-xl md:text-2xl text-slate-300 font-medium max-w-3xl leading-relaxed drop-shadow-lg tracking-wide">
-              Experience the perfect pitch. <span className="text-white font-bold">Floodlights • Premium Grass • Instant Booking.</span>
+            <p className="mt-6 text-lg sm:text-xl text-white/90 font-medium max-w-2xl leading-relaxed tracking-wide">
+              Engineered for the pros, accessible for everyone. Experience the perfect pitch with floodlights and premium grass.
             </p>
 
-            {/* Animated CTA Buttons */}
-            <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
-              <a href="/booking" className="inline-block">
-                <ShimmerButton className="shadow-2xl">
-                  <span className="whitespace-pre-wrap text-center text-sm font-black leading-none tracking-widest text-white uppercase flex items-center gap-2">
-                    <Calendar className="w-5 h-5" /> Book Instantly
+            {/* Overlapping Search/Stats Box */}
+            <div className="w-full max-w-4xl mx-auto mt-20 bg-white rounded-none shadow-2xl border border-zinc-200">
+              <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-200 text-left">
+                
+                <div className="p-6 flex flex-col justify-center">
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Happy Players</span>
+                  <span className="text-3xl font-black font-heading italic text-zinc-900 flex items-center">
+                    <NumberTicker value={50} />K+
                   </span>
-                </ShimmerButton>
-              </a>
+                </div>
+                
+                <div className="p-6 flex flex-col justify-center">
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Google Rating</span>
+                  <span className="text-3xl font-black font-heading italic text-[#065f2e] flex items-center gap-2">
+                    4.9 <Star className="w-6 h-6 fill-[#065f2e]" />
+                  </span>
+                </div>
 
-              {/* Secondary Ghost Button */}
-              <a href="/about" className="h-16 px-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-white/10 hover:border-white/40 transition-all duration-300">
-                <Play className="w-5 h-5" /> Watch Trailer
-              </a>
-            </div>
-            
-            {/* Live Stats Panel */}
-            <div className="w-full max-w-4xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl">
-              <div className="flex flex-col items-center justify-center p-4">
-                <span className="text-3xl md:text-4xl font-black font-heading text-white flex items-center">
-                  <NumberTicker value={50} />K+
-                </span>
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Happy Players</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
-                <span className="text-3xl md:text-4xl font-black font-heading text-[#10b981] flex items-center gap-1">
-                  4.9 <Star className="w-5 h-5 fill-[#10b981]" />
-                </span>
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Google Rating</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
-                <span className="text-2xl md:text-3xl font-black font-heading text-white">
-                  CITY CENTER
-                </span>
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Prime Location</span>
-              </div>
-              <div className="flex flex-col items-center justify-center p-4 border-l border-white/10">
-                <span className="text-2xl md:text-3xl font-black font-heading text-white">
-                  24/7
-                </span>
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Opening Timings</span>
+                <div className="p-6 flex flex-col justify-center">
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Location</span>
+                  <span className="text-2xl font-black font-heading italic text-zinc-900 leading-none">
+                    CITY CENTER
+                  </span>
+                </div>
+
+                <div className="p-6 flex flex-col justify-center bg-[#065f2e]">
+                  <a href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider hover:scale-105 transition-transform gap-2">
+                    <Calendar className="w-5 h-5" /> Book Now
+                  </a>
+                </div>
+
               </div>
             </div>
 
           </motion.div>
         </div>
-    </section>
-
+      </section>
       {/* ── MAGIC UI MARQUEE ── */}
-      <section className="py-4 bg-white/5 border-y border-white/10 overflow-hidden backdrop-blur-md">
+      <section className="py-6 bg-[#065f2e] border-none overflow-hidden">
         <Marquee className="[--duration:30s]" repeat={6}>
           {[
             "⚽ FIFA Certified Grass",
@@ -187,7 +164,7 @@ export default function Home() {
             "🚗 Premium Parking",
             "🏆 Tournaments Allowed"
           ].map((feature, i) => (
-            <div key={i} className="mx-8 text-slate-300 font-bold text-sm md:text-lg tracking-widest uppercase flex items-center">
+            <div key={i} className="mx-8 text-white font-black text-sm md:text-lg tracking-widest uppercase flex items-center italic">
               {feature}
             </div>
           ))}
@@ -195,15 +172,17 @@ export default function Home() {
       </section>
 
       {/* ── GALLERY SECTION (Swipeable) ── */}
-      <section id="gallery" className="py-24 bg-[#0a120a] border-t border-white/5 overflow-hidden">
+      <section id="gallery" className="py-24 bg-zinc-50 border-t border-zinc-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
-              <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">The Playing Surface</h3>
+              <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
+              <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">
+                FEATURED ARENAS
+              </h3>
             </div>
-            <div className="flex gap-2 hidden md:flex">
-              <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest hidden md:inline-block">
                 <span className="w-8 h-[1px] bg-zinc-500 block"></span>
                 Swipe to explore
               </span>
@@ -211,40 +190,50 @@ export default function Home() {
           </div>
         </div>
           
-        <div className="w-full px-6 md:px-12">
-          <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar" style={{ scrollbarWidth: 'none' }}>
-            {galleryImages.map((src, i) => (
-              <div 
-                key={i}
-                className="relative w-[320px] md:w-[600px] aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden cursor-pointer border border-white/5 bg-black shrink-0 snap-center group"
-              >
-                {src.startsWith('http') ? (
-                  <img src={src} alt={`Turf Ground ${i}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                ) : (
-                  <Image src={src} alt={`Turf Ground ${i}`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="w-full pl-6 md:pl-12">
+          <motion.div 
+            drag="x" 
+            dragConstraints={{ right: 0, left: -600 }} 
+            whileTap={{ cursor: "grabbing" }}
+            className="flex gap-6 cursor-grab pb-8"
+          >
+            {[
+              { title: "Day View", img: "/turf_day.jpg" },
+              { title: "Night Lights", img: "/turf_night.png" },
+              { title: "Premium Grass", img: "/turf_grass.jpg" }
+            ].map((item, i) => (
+              <div key={i} className="min-w-[300px] md:min-w-[500px] bg-white rounded-none border border-zinc-200 overflow-hidden shadow-sm group">
+                <div className="relative h-[200px] md:h-[300px] overflow-hidden">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-black uppercase text-zinc-900 italic tracking-wide">{item.title}</h4>
+                  <p className="text-sm text-zinc-500 mt-2">FIFA standard specification</p>
+                </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
         
         {/* View All Facilities Button */}
         <div className="mt-12 flex justify-center">
-          <a href="/facilities" className="h-14 px-8 rounded-xl border border-[#10b981]/50 bg-[#10b981]/10 text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#10b981] hover:text-black transition-all shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+          <a href="/facilities" className="h-14 px-8 rounded-none border-2 border-[#065f2e] bg-white text-[#065f2e] font-black text-sm uppercase tracking-wider flex items-center gap-2 hover:bg-[#065f2e] hover:text-white transition-colors">
             View All Facilities
           </a>
         </div>
       </section>
 
       {/* ── PRICING SECTION ── */}
-      <section id="pricing" className="py-24 relative overflow-hidden bg-[#060a06] border-t border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)] pointer-events-none" />
-        
+      <section id="pricing" className="py-24 relative overflow-hidden bg-white border-t border-zinc-200">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Pricing Plans</h2>
-            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">Choose Your Turf</h3>
+            <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Pricing Plans</h2>
+            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">CHOOSE YOUR SESSION</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -255,30 +244,30 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`relative rounded-[2.5rem] p-8 border ${plan.popular ? 'bg-[#0a120a] border-white  md:-translate-y-4' : 'bg-white/5 border-white/10 backdrop-blur-sm'}`}
+                className={`relative rounded-none p-8 border ${plan.popular ? 'bg-white border-2 border-[#065f2e] shadow-xl md:-translate-y-4' : 'bg-zinc-50 border-zinc-200 shadow-sm'}`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-white text-[#060a06] text-[10px] font-black uppercase tracking-widest rounded-full">
-                    Most Popular
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#065f2e] text-white text-[10px] font-black uppercase tracking-widest">
+                    Available Now
                   </div>
                 )}
                 <div className="mb-8">
-                  <h4 className="text-white font-black tracking-wider uppercase mb-2 text-lg">{plan.name}</h4>
-                  <p className="text-slate-400 text-sm font-medium">{plan.desc}</p>
+                  <h4 className="text-zinc-900 font-black italic tracking-wider uppercase mb-2 text-xl">{plan.name}</h4>
+                  <p className="text-zinc-500 text-sm font-medium">{plan.desc}</p>
                 </div>
                 <div className="mb-8 flex items-baseline gap-1">
-                  <span className="text-5xl font-black text-white tracking-tighter">{plan.price}</span>
-                  <span className="text-slate-500 font-bold uppercase text-xs">/ hour</span>
+                  <span className="text-5xl font-black font-heading italic text-[#065f2e] tracking-tighter">{plan.price}</span>
+                  <span className="text-zinc-500 font-bold uppercase text-xs">/ hour</span>
                 </div>
                 <ul className="space-y-4 mb-10">
                   {plan.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm font-semibold text-slate-300">
-                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    <li key={idx} className="flex items-center gap-3 text-sm font-bold text-zinc-700">
+                      <CheckCircle2 className={`w-5 h-5 ${plan.popular ? 'text-[#065f2e]' : 'text-zinc-400'}`} />
                       {feat}
                     </li>
                   ))}
                 </ul>
-                <a href="/booking" className={`w-full py-4 rounded-xl font-black uppercase tracking-wider text-sm transition-all flex justify-center items-center ${plan.popular ? 'bg-white text-black hover:bg-zinc-200' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+                <a href="/booking" className={`w-full py-4 rounded-none font-black uppercase tracking-wider text-sm transition-all flex justify-center items-center ${plan.popular ? 'bg-[#065f2e] text-white hover:bg-[#04401f]' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
                   Select Plan
                 </a>
               </motion.div>
@@ -288,8 +277,7 @@ export default function Home() {
       </section>
 
       {/* ── TOURNAMENT HOSTING SECTION ── */}
-      <section className="py-24 bg-[#0a120a] border-t border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)] pointer-events-none" />
+      <section className="py-24 bg-zinc-50 border-t border-zinc-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -298,14 +286,14 @@ export default function Home() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-yellow-500/30 bg-yellow-500/10 mb-6">
-                <Trophy className="w-4 h-4 text-yellow-500" />
-                <span className="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Corporate & Local Leagues</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-zinc-200 bg-white mb-6 shadow-sm">
+                <Trophy className="w-4 h-4 text-[#065f2e]" />
+                <span className="text-[10px] font-black tracking-widest text-[#065f2e] uppercase">Corporate & Local Leagues</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black font-heading text-white uppercase tracking-tight leading-none mb-6">
-                HOST YOUR TOURNAMENT WITH US
+              <h2 className="text-4xl md:text-5xl font-black font-heading text-zinc-900 uppercase italic tracking-tight leading-none mb-6">
+                HOST YOUR TOURNAMENT
               </h2>
-              <p className="text-slate-400 text-lg leading-relaxed mb-8">
+              <p className="text-zinc-600 text-lg leading-relaxed mb-8">
                 From corporate sports days to high-stakes local football leagues, Vaadivaasal Turf is the perfect venue. We offer end-to-end support including referees, floodlights, seating, and live scoreboard setups.
               </p>
               
@@ -322,7 +310,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="h-14 px-8 inline-flex rounded-xl bg-white text-[#060a06] font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-zinc-200 transition-colors">
+              <a href="#contact" className="h-14 px-8 inline-flex rounded-none bg-[#065f2e] text-white font-black text-sm uppercase tracking-wider items-center gap-2 hover:bg-[#04401f] transition-colors shadow-sm">
                 Enquire Now <Award className="w-5 h-5" />
               </a>
             </motion.div>
@@ -332,7 +320,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-video md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group"
+              className="relative aspect-video md:aspect-[4/3] rounded-none overflow-hidden border border-zinc-200 shadow-sm group"
             >
               <Image 
                 src="https://images.unsplash.com/photo-1518605368461-1ee7c5108f91?q=80&w=1200" 
@@ -340,12 +328,12 @@ export default function Home() {
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060a06] via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
               <div className="absolute bottom-8 left-8 right-8">
                 <div className="flex items-center justify-between">
-                  <span className="text-white font-black text-2xl font-heading tracking-wider">CHAMPIONSHIP ARENA</span>
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                    <Trophy className="w-6 h-6 text-yellow-500" />
+                  <span className="text-white font-black text-2xl font-heading tracking-wider italic">CHAMPIONSHIP ARENA</span>
+                  <div className="w-12 h-12 rounded-none bg-white flex items-center justify-center border border-zinc-200 shadow-sm">
+                    <Trophy className="w-6 h-6 text-[#065f2e]" />
                   </div>
                 </div>
               </div>
@@ -355,34 +343,34 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS (REVIEWS) ── */}
-      <section className="py-24 bg-[#060a06] border-t border-white/5">
+      <section className="py-24 bg-white border-t border-zinc-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Player Reviews</h2>
-            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight">Hear From Champions</h3>
+            <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Player Reviews</h2>
+            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">HEAR FROM CHAMPIONS</h3>
           </div>
           <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
         </div>
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="py-24 bg-[#060a06] border-t border-white/5">
+      <section className="py-24 bg-zinc-50 border-t border-zinc-200">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
-            <h2 className="text-white font-black tracking-widest uppercase text-xs mb-3">Got Questions?</h2>
-            <h3 className="text-5xl md:text-6xl font-black font-heading text-white uppercase tracking-tight mb-8">Frequently Asked</h3>
+            <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Got Questions?</h2>
+            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic mb-8">FREQUENTLY ASKED</h3>
             
             {/* Language Toggle */}
-            <div className="inline-flex bg-[#0a120a] border border-white/10 rounded-xl p-1 mb-6">
+            <div className="inline-flex bg-white border border-zinc-200 rounded-none p-1 mb-6 shadow-sm">
               <button 
                 onClick={() => setFaqLang('en')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'en' ? 'bg-[#10b981] text-black shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                className={`px-6 py-2 rounded-none text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'en' ? 'bg-[#065f2e] text-white' : 'text-zinc-500 hover:text-zinc-900'}`}
               >
                 English
               </button>
               <button 
                 onClick={() => setFaqLang('ta')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'ta' ? 'bg-[#10b981] text-black shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                className={`px-6 py-2 rounded-none text-sm font-bold uppercase tracking-wider transition-all ${faqLang === 'ta' ? 'bg-[#065f2e] text-white' : 'text-zinc-500 hover:text-zinc-900'}`}
               >
                 Tanglish
               </button>
@@ -405,13 +393,13 @@ export default function Home() {
                   ta: { q: "Slot cancel panna mudiyuma?", a: "24 hours-ku munnadi cancel panna full amount refund aagum illa vera slot book pannikalam. Last minute-la cancel panna refund kedaikathu." }
                 }
               ].map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="bg-[#0a120a] border border-white/5 rounded-2xl px-6 data-[state=open]:border-[#10b981]/50 transition-colors">
-                  <AccordionTrigger className="hover:no-underline text-left text-lg font-bold text-white py-6">
+                <AccordionItem key={i} value={`item-${i}`} className="bg-white border border-zinc-200 rounded-none px-6 data-[state=open]:border-[#065f2e] transition-colors shadow-sm">
+                  <AccordionTrigger className="hover:no-underline text-left text-lg font-black italic text-zinc-900 py-6">
                     <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-white block"></span> {faqLang === 'en' ? faq.en.q : faq.ta.q}
+                      <span className="w-2 h-2 rounded-none bg-[#065f2e] block"></span> {faqLang === 'en' ? faq.en.q : faq.ta.q}
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-400 text-sm leading-relaxed pl-5 pb-6">
+                  <AccordionContent className="text-zinc-600 font-medium text-sm leading-relaxed pl-5 pb-6">
                     {faqLang === 'en' ? faq.en.a : faq.ta.a}
                   </AccordionContent>
                 </AccordionItem>
