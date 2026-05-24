@@ -82,21 +82,9 @@ export default function Home() {
       <Navbar />
 
       {/* ── HOME / HERO SECTION ── */}
-      <section id="home" className="relative flex flex-col items-center justify-start min-h-[85vh] pt-32 pb-12">
-        {/* Top Half Dark Background */}
-        <div className="absolute top-0 left-0 right-0 h-[70vh] z-0 bg-[#060a06] overflow-hidden">
-          <motion.div style={{ y: yHero }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
-            <Image
-              src="/turf_night_view.png"
-              alt="Cinematic Turf Background"
-              fill
-              className="object-cover object-center opacity-50"
-              priority
-            />
-          </motion.div>
-          {/* Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#060a06]/80 via-transparent to-[#060a06]" />
-        </div>
+      <section id="home" className="relative flex flex-col items-center justify-start pt-32 pb-16 bg-zinc-50 overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
           <motion.div
@@ -106,46 +94,58 @@ export default function Home() {
             className="flex flex-col items-center w-full"
           >
             {/* Bold Premium Typography (Athletic Style) */}
-            <h2 className="text-sm sm:text-lg font-bold tracking-[0.3em] uppercase mb-4 text-white/80 mt-10">
+            <h2 className="text-xs sm:text-sm md:text-lg font-bold tracking-[0.3em] uppercase mb-4 text-[#065f2e] mt-4 sm:mt-10">
               Virudhachalam’s Finest
             </h2>
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-black font-heading uppercase italic tracking-tighter leading-[0.9] text-white drop-shadow-2xl flex flex-col items-center">
+            <h1 className="text-[3.5rem] leading-[0.85] sm:text-7xl md:text-8xl lg:text-[9rem] font-black font-heading uppercase italic tracking-tighter text-zinc-900 flex flex-col items-center">
               <span>PREMIUM <span className="text-[#10b981]">CRICKET</span></span>
               <span>& FOOTBALL</span>
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-white/90 font-medium max-w-2xl leading-relaxed tracking-wide">
+            <p className="mt-6 text-sm sm:text-lg md:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed tracking-wide px-4">
               Engineered for the pros, accessible for everyone. Experience the perfect pitch with floodlights and premium grass.
             </p>
 
+            {/* Massive Accent Image Below Text (Desktop & Mobile) */}
+            <div className="w-full max-w-5xl mx-auto mt-12 relative h-[30vh] sm:h-[40vh] md:h-[50vh] overflow-hidden rounded-none shadow-xl border border-zinc-200">
+              <Image
+                src="/turf_day.jpg"
+                alt="Turf Day View"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 to-transparent" />
+            </div>
+
             {/* Overlapping Search/Stats Box */}
-            <div className="w-full max-w-4xl mx-auto mt-20 bg-white rounded-none shadow-2xl border border-zinc-200">
+            <div className="w-full max-w-4xl mx-auto -mt-16 sm:-mt-24 relative z-20 bg-white rounded-none shadow-2xl border border-zinc-200">
               <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-200 text-left">
                 
-                <div className="p-6 flex flex-col justify-center">
-                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Happy Players</span>
-                  <span className="text-3xl font-black font-heading italic text-zinc-900 flex items-center">
+                <div className="p-4 sm:p-6 flex flex-col justify-center">
+                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Happy Players</span>
+                  <span className="text-2xl sm:text-3xl font-black font-heading italic text-zinc-900 flex items-center">
                     <NumberTicker value={50} />K+
                   </span>
                 </div>
                 
-                <div className="p-6 flex flex-col justify-center">
-                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Google Rating</span>
-                  <span className="text-3xl font-black font-heading italic text-[#065f2e] flex items-center gap-2">
-                    4.9 <Star className="w-6 h-6 fill-[#065f2e]" />
+                <div className="p-4 sm:p-6 flex flex-col justify-center">
+                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Google Rating</span>
+                  <span className="text-2xl sm:text-3xl font-black font-heading italic text-[#065f2e] flex items-center gap-1 sm:gap-2">
+                    4.9 <Star className="w-4 h-4 sm:w-6 sm:h-6 fill-[#065f2e]" />
                   </span>
                 </div>
 
-                <div className="p-6 flex flex-col justify-center">
-                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Location</span>
-                  <span className="text-2xl font-black font-heading italic text-zinc-900 leading-none">
+                <div className="p-4 sm:p-6 flex flex-col justify-center">
+                  <span className="text-[10px] sm:text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">Location</span>
+                  <span className="text-xl sm:text-2xl font-black font-heading italic text-zinc-900 leading-none">
                     CITY CENTER
                   </span>
                 </div>
 
-                <div className="p-6 flex flex-col justify-center bg-[#065f2e]">
-                  <Link href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider hover:scale-105 transition-transform gap-2">
-                    <Calendar className="w-5 h-5" /> Book Now
+                <div className="p-4 sm:p-6 flex flex-col justify-center bg-[#065f2e] group cursor-pointer" onClick={() => window.location.href='/booking'}>
+                  <Link href="/booking" className="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-wider group-hover:scale-[1.03] transition-transform gap-2 text-sm sm:text-base">
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5" /> Book
                   </Link>
                 </div>
 
@@ -173,8 +173,8 @@ export default function Home() {
       </section>
 
       {/* ── GALLERY SECTION (Swipeable) ── */}
-      <section id="gallery" className="py-24 bg-zinc-50 border-t border-zinc-200 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-12">
+      <section id="gallery" className="py-16 md:py-24 bg-zinc-50 border-t border-zinc-200 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mb-10 md:mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Our Ground</h2>
@@ -230,14 +230,14 @@ export default function Home() {
       </section>
 
       {/* ── PRICING SECTION ── */}
-      <section id="pricing" className="py-24 relative overflow-hidden bg-white border-t border-zinc-200">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
+      <section id="pricing" className="py-16 md:py-24 relative overflow-hidden bg-white border-t border-zinc-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-10 md:mb-16">
             <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Pricing Plans</h2>
-            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">CHOOSE YOUR SESSION</h3>
+            <h3 className="text-3xl sm:text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">CHOOSE YOUR SESSION</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
             {pricingPlans.map((plan, i) => (
               <motion.div 
                 key={i}
@@ -278,23 +278,23 @@ export default function Home() {
       </section>
 
       {/* ── TOURNAMENT HOSTING SECTION ── */}
-      <section className="py-24 bg-zinc-50 border-t border-zinc-200 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 bg-zinc-50 border-t border-zinc-200 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-zinc-200 bg-white mb-6 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 border border-zinc-200 bg-white mb-6 shadow-sm">
                 <Trophy className="w-4 h-4 text-[#065f2e]" />
-                <span className="text-[10px] font-black tracking-widest text-[#065f2e] uppercase">Corporate & Local Leagues</span>
+                <span className="text-[9px] sm:text-[10px] font-black tracking-widest text-[#065f2e] uppercase">Corporate & Local Leagues</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black font-heading text-zinc-900 uppercase italic tracking-tight leading-none mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-zinc-900 uppercase italic tracking-tight leading-none mb-6">
                 HOST YOUR TOURNAMENT
               </h2>
-              <p className="text-zinc-600 text-lg leading-relaxed mb-8">
+              <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed mb-8">
                 From corporate sports days to high-stakes local football leagues, Vaadivaasal Turf is the perfect venue. We offer end-to-end support including referees, floodlights, seating, and live scoreboard setups.
               </p>
               
@@ -344,22 +344,22 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS (REVIEWS) ── */}
-      <section className="py-24 bg-white border-t border-zinc-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+      <section className="py-16 md:py-24 bg-white border-t border-zinc-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Player Reviews</h2>
-            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">HEAR FROM CHAMPIONS</h3>
+            <h3 className="text-3xl sm:text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic">HEAR FROM CHAMPIONS</h3>
           </div>
           <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
         </div>
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="py-24 bg-zinc-50 border-t border-zinc-200">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 md:py-24 bg-zinc-50 border-t border-zinc-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-[#065f2e] font-black tracking-widest uppercase text-xs mb-3">Got Questions?</h2>
-            <h3 className="text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic mb-8">FREQUENTLY ASKED</h3>
+            <h3 className="text-3xl sm:text-4xl md:text-6xl font-black font-heading text-zinc-900 uppercase italic mb-8">FREQUENTLY ASKED</h3>
             
             {/* Language Toggle */}
             <div className="inline-flex bg-white border border-zinc-200 rounded-none p-1 mb-6 shadow-sm">
