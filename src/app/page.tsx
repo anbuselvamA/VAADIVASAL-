@@ -328,7 +328,7 @@ export default function Home() {
               className="relative aspect-video md:aspect-[4/3] rounded-none overflow-hidden border border-zinc-200 shadow-sm group"
             >
               <Image 
-                src="https://images.unsplash.com/photo-1518605368461-1ee7c5108f91?q=80&w=1200" 
+                src="/turf_night_view.png" 
                 alt="Tournament" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105" 

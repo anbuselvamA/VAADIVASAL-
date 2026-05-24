@@ -14,9 +14,9 @@ export default function FacilitiesPage() {
     "/turf_night_view.png",
     "/facilities_hero.png",
     "/about_hero.png",
-    "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=800",
-    "https://images.unsplash.com/photo-1459865264687-595d652de67e?q=80&w=800",
-    "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=800"
+    "/facilities_hero.png",
+    "/turf_night_view.png",
+    "/about_hero.png"
   ];
 
   return (
